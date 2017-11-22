@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import smtplib
 
 from django.core.urlresolvers import reverse_lazy
 
-#LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'account/login'
 LOGOUT_URL = 'index'
 
@@ -32,12 +33,7 @@ SECRET_KEY = '!poq!-(g3wuah%$*gby)c0@hxuu15rjuc8$0&t)tnrc7wzht82'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-# EMAIL SETTINGS: Send And Receive Messages After Login
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'chooksigwe@gmail.com'
-EMAIL_HOST_PASSWORD = 'engin33r'
-EMAIL_PORT = 587
+
 
 # Application definition
 
@@ -53,7 +49,7 @@ INSTALLED_APPS = [
     'course',
     'tutor',
     'student',
-    'account',
+    'accounts',
     'crispy_forms',
     'captcha',
 ]
@@ -95,6 +91,13 @@ ADMIN_VIEW_PERMISSION_MODELS = [
 WSGI_APPLICATION = 'ecollege.wsgi.application'
 
 
+# EMAIL SETTINGS: Send And Receive Messages After Login
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = 'engin33r'
+EMAIL_HOST_USER = 'chooksigwe@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 

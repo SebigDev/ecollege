@@ -6,7 +6,7 @@ from .import views
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^account/', include('account.urls')),
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^student/', include('student.urls')),
     url(r'^course/', include('course.urls')),
