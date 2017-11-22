@@ -1,0 +1,12 @@
+{% extends 'layouts/master.html' %}
+{% load staticfiles %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    <a href="{% url 'profile' tutor_profile.pk %}">Profile</a>
+
+    {% endif %}
+
+{% endblock %}

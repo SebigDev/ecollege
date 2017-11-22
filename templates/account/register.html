@@ -1,0 +1,65 @@
+{% extends 'layouts/master.html' %}
+{% load staticfiles %}
+{% block title %}
+Register
+{% endblock %}
+{% block content %}
+ <body class="login">
+    <div id="content" style="margin-left: 20%">
+        <div class="container-fluid">
+            <div class="lock-container">
+                <div class="panel panel-default text-center paper-shadow" data-z="0.5">
+                    <h1 class="text-display-1">Create account</h1>
+                           {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <p class="text-center" style="color: red;margin-right: 15%;">{{ message }}</p>
+                {% endfor %}
+            </ul>
+        {% endif %}
+                    <div class="panel-body">
+                        <!-- Signup -->
+                        <form role="form" method="post" >
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="form-control-material">
+                                    <input id="id_username" name="username" required="" minlength="4" maxlength="150" type="text" class="form-control" placeholder="Username">
+                                    <label for="username">Username</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-control-material">
+                                    <input id="id_email" name="email" type="email" required=""class="form-control" placeholder="Email">
+                                    <label for="email">Email address</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-control-material">
+                                    <input id="id_password1" name="password1" type="password" required="" class="form-control" placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-control-material">
+                                    <input id="id_password2" name="password2" type="password" required="" class="form-control" placeholder="Password Confirmation">
+                                    <label for="passwordConfirmation">Re-type password</label>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="agree" />
+                                    <label for="agree">* I Agree with <a href="#">Terms &amp; Conditions!</a></label>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-primary">Create an Account</button>
+                            </div>
+                        </form>
+
+                        <!-- //Signup -->
+                    </div>
+                </div>
+            </div>
+        </div>
+   </body>
+{% endblock %}
