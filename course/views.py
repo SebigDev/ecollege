@@ -10,6 +10,7 @@ class CourseListView(LoginRequiredMixin, ListView):
     context_object_name = 'course_listing'
     login_url = '/account/login'
     redirect_field_name = 'redirect_to'
+    raise_exception = True
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
@@ -25,6 +26,7 @@ class CourseDetailView(LoginRequiredMixin, DetailView):
     template_name = 'course/detail.html'
     login_url = '/account/login'
     redirect_field_name = 'redirect_to'
+    raise_exception = True
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
@@ -39,6 +41,7 @@ class CourseEnrolDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'course_enrol'
     login_url = '/account/login'
     redirect_field_name = 'redirect_to'
+    raise_exception = True
 
     def get_context_data(self, **kwargs):
         context = super(CourseEnrolDetailView, self).get_context_data(**kwargs)

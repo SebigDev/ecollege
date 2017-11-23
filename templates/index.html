@@ -117,7 +117,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                 <li class="dropdown">
                 <div class="">
                             <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                                 <img src="{{ user.photo.url }}" alt="" class="img-circle" width="40" />
+                                 <img src="{% static 'images/Sebig.png' %}" alt="" class="img-circle" width="40" />
                                 {% firstof user.get_short_name user.get_username %}
                                <span class="caret"></span>
                             </a>
@@ -268,6 +268,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <br/>
             <div class="slick-basic slick-slider" data-items="4" data-items-lg="3" data-items-md="2" data-items-sm="1" data-items-xs="1">
                 {% for course_feature in course %}
+                    {% if request.user.is_authenticated %}
                 <div class="item">
                     <div class="panel panel-default paper-shadow" data-z="0.5" data-hover-z="1" data-animated>
                         <div class="panel-body">
@@ -296,6 +297,35 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                         </div>
                     </div>
                 </div>
+                    {% else %}
+                    <div class="item">
+                    <div class="panel panel-default paper-shadow" data-z="0.5" data-hover-z="1" data-animated>
+                        <div class="panel-body">
+                            <div class="media media-clearfix-xs">
+                                <div class="media-left">
+                                    <div class="cover width-90 width-100pc-xs overlay cover-image-full hover">
+
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading margin-v-5-3"><a href="#">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elif
+                                    </a>
+
+                                    </h4>
+                                    <p class="small margin-none">
+                                        <span class="fa fa-fw fa-star text-yellow-800"></span>
+                                        <span class="fa fa-fw fa-star text-yellow-800"></span>
+                                        <span class="fa fa-fw fa-star text-yellow-800"></span>
+                                        <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                                        <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% endif %}
                 {% endfor %}
             </div>
             <div class="text-center">

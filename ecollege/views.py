@@ -6,10 +6,10 @@ from course.models import *
 from tutor.models import *
 
 
-class IndexView(LoginRequiredMixin, View):
+class IndexView(View):
     def get(self, request, *args, **kwargs):
         course = Course.objects.all().order_by('id')
-        tutor = Tutor.objects.filter(tutor_user=self.request.user)
+        tutor = Tutor.objects.filter()
         context = {
             'course': course,
             'tutor': tutor

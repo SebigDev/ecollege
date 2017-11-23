@@ -31,23 +31,13 @@
                                 <li><a href="#">Course Details</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="app-student-courses.html">My Courses</a></li>
-                                <li><a href="app-take-course.html">Take Course</a></li>
-                                <li><a href="app-course-forums.html">Course Forums</a></li>
-                                <li><a href="app-take-quiz.html">Take Quiz</a></li>
-                                <li><a href="app-student-profile.html">Edit Profile</a></li>
-                                <li><a href="app-student-messages.html">Messages</a></li>
-                            </ul>
-                        </li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instructor <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="app-instructor-courses.html">My Courses</a></li>
-                                <li><a href="app-instructor-course-edit-course.html">Edit Course</a></li>
+                                <li><a href="{% url 'dashboard_list' %}">My Dashboard</a></li>
+                                <li><a href="{% url 'tutor_course' request.user %}">My Courses</a></li>
                                 <li><a href="app-instructor-messages.html">Messages</a></li>
+
                             </ul>
                         </li>
                     </ul>
@@ -131,7 +121,7 @@
                 <div class="sidebar-block">
                     <div class="profile">
                         <a href="#">
-                            <img src="images/people/110/guy-6.jpg" alt="people" class="img-circle width-80" />
+                            <img src="{{ request.user.url }}" alt="people" class="img-circle width-80" />
                         </a>
                         <h4 class="text-display-1 margin-none">Instructor Name</h4>
                     </div>

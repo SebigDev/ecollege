@@ -32,7 +32,7 @@ def signup(request):
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration.')
+            #return HttpResponse('Please confirm your email address to complete the registration.')
             return render(request, 'accounts/acc_active_sent.html')
     else:
         form = SignupForm()
@@ -57,4 +57,4 @@ def activate(request, uidb64, token):
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You have logged out')
-    return render(request, 'index.html', {})
+    return redirect('/')

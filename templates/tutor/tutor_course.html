@@ -24,7 +24,8 @@ Tutor Courses
                                            class="padding-none overlay overlay-full icon-block bg-default">
                                             <span class="v-center">
 
-                    <img src="{{ list.image.url }}" height="100" width="300" class="img-rounded img-responsive">
+                    <img src="{{ list.image.url }}"
+                         height="100" width="300" class="img-rounded img-responsive" style="margin: 5%;">
 
             </span>
                                         </a>
@@ -36,12 +37,16 @@ Tutor Courses
                                     </div>
                                     <div class="panel-body">
                                         <h4 class="text-headline margin-v-0-10"><a href="#">{{ list.title }}</a></h4>
-                                        <p class="text-info">{{ list.blob }}</p>
+                                        <p class="text-info">{{ list.blob }}</p><br>
                                     </div>
                                     <hr class="margin-none" />
                                     <div class="panel-body">
                                         <a class="btn btn-white btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated
-                                           href="{% url 'tutor_edit' list.pk %}"><i class="fa fa-fw fa-pencil"></i> Edit course</a>
+                                           href="{% url 'tutor_edit' list.id %}"><i class="fa fa-fw fa-pencil"></i> Edit course</a>
+                                          <a class="btn btn-white btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated
+                                           href="{% url 'tutor_delete' list.id %}"><i class="fa fa-fw fa-star">
+
+                                          </i> Delete Course</a>
                                     </div>
                                 </div>
                             </div>

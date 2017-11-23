@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^student/', include('student.urls')),
     url(r'^course/', include('course.urls')),
     url(r'^tutor/', include('tutor.urls')),
-    url(r'^contact$', views.contact, name='contact'),
+    url(r'^contact/$', views.contact, name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
