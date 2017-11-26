@@ -10,7 +10,7 @@
                         <div class="media media-grid media-clearfix-xs">
                             <div class="media-body">
                                 <div class="page-section">
-                                    <h4 class="text-right text-info"> <a class="btn btn-default btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated href="{% url 'course_listing' %}"> Back to Library</a> </h4>
+                                    <h4 class="text-right text-info"> <a class="btn btn-default btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated href="{% url 'course_available' %}"> Back to Library</a> </h4>
                                     <div class="media">
                                         <div class="media-left">
                                             <span><img src="{{ object.image.url }}" height="70" width="70" class="img-rounded"></span>
@@ -117,18 +117,10 @@
                                             <h4 class="text-headline">Course</h4>
                                         </div>
                                         <div class="panel-body">
-                                            <h4 class="text-caption margin-none">&nbsp;
-                                                <i class="fa fa-calendar fa-fw"></i> {{ object.created }}</h5>
+                                            <h4 class="text-caption margin-none">
+
+                                                </h4>
                                                 <br/>
-                                               <h5> <i class="fa fa-user fa-fw"></i>
-                                                Tutor:
-                                                   {{ tutor.tutor_user.first_name }}
-                                                    {{ tutor.tutor_user.last_name }}
-                                                </h5>
-                                                <br/>
-                                                <p><i class="fa fa-mortar-board fa-fw"></i> Max. students: 50</p>
-                                                <br/>
-                                                <p> <i class="fa fa-check fa-fw"></i>Attending: 30</p>
                                             </h4>
                                         </div>
                                         <hr class="margin-none" />
@@ -154,31 +146,6 @@
                                     <!-- .panel -->
                                     <div class="panel panel-default paper-shadow" data-z="0.5" data-hover-z="1" data-animated>
                                         <div class="panel-body">
-                                            <div class="media v-middle">
-                                                <div class="media-left">
-                                                    <img src="{{ tutor.photo.url }}" alt="About Adrian" width="60" class="img-circle" />
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4 class="text-title margin-none">
-                                                        <a href="#">
-                                                        {{ tutor.tutor_user.first_name }}
-                                                            {{ tutor.tutor_user.last_name }}
-                                                    </a></h4>
-                                                    <span class="caption text-light">Biography</span>
-                                                </div>
-                                            </div>
-                                            <br/>
-                                            <div class="expandable expandable-indicator-white expandable-trigger">
-                                                <div class="expandable-content">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus aut consectetur consequatur cum cupiditate debitis doloribus, error ex explicabo harum illum minima mollitia nisi nostrum officiis omnis optio qui quisquam saepe sit sunt totam vel velit voluptatibus? Adipisci ducimus expedita id nostrum quas quia!</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- // END .panel -->
-                                    <!-- .panel -->
-                                    <div class="panel panel-default paper-shadow" data-z="0.5" data-hover-z="1" data-animated>
-                                        <div class="panel-body">
                                             <h4 class="text-headline">Other Courses</h4>
                                         </div>
                                         <ul class="list-group">
@@ -191,7 +158,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="media-body">
-                                                        <a href="{% url 'course_detail' object.pk object.slug %}" class="link-text-color"><span>
+                                                        <a href="{% url 'course_detail' course.pk course.slug %}" class="link-text-color"><span>
                                                             {{ course.title }}</span></a>
                                                     </div>
                                                 </div>

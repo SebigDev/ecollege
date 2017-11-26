@@ -1,18 +1,12 @@
 from django.contrib import admin
-from .models import Student, StudentCourse
+from .models import Student
 
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['age', 'gender']
-    list_filter = ['age', 'gender']
-    search_fields = ['age', 'gender']
+    list_display = ['student_user', 'age', 'gender']
+    list_filter = ['student_user', 'age', 'gender']
+    search_fields = ['student_user', 'age', 'gender']
 
-
-@admin.register(StudentCourse)
-class StudentCourseAdmin(admin.ModelAdmin):
-    list_display = ['pk']
-    list_filter = ['_student']
-    search_fields = ['_student']
 
 

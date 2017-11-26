@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from tutor.models import Tutor
 
 
@@ -16,7 +18,7 @@ class CourseCategory(models.Model):
 class Course(models.Model):
     category = models.ManyToManyField(CourseCategory, related_name='course_category')
     title = models.CharField(max_length=255)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='course')
     blob = models.CharField(max_length=500)
     description = models.TextField()

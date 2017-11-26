@@ -13,7 +13,7 @@
                 <div class="st-content-inner padding-top-none">
                     <div class="container-fluid">
                  <div class="page-section">
-                      <h4 class="text-right text-info"> <a class="btn btn-default btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated href="{% url 'course_listing' %}"> Back to Library</a> </h4>
+                      <h4 class="text-right text-info"> <a class="btn btn-default btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated href="{% url 'course_available' %}"> Back to Library</a> </h4>
                             <div class="media media-grid v-middle">
                                 <div class="media-left">
                                     <span class="icon-block half bg-blue-300 text-white">{{ object.pk }}</span>
@@ -29,6 +29,10 @@
                             <h3 class="text-left text-blue-300"><i class="fa fa-graduation-cap"></i>&nbsp;
                                 Topics in {{ object.title }}</h3>
                         </div><hr />
+                    {% if not topic %}
+                        <p class="text-left text-info">No Available Topic(s) for <i class="text-danger">
+                            {{ object.title }}</i>&nbsp; yet...</p>
+                    {% else %}
                         {% for c in topic %}
                         <div class="panel panel-default curriculum paper-shadow" data-z="0.5">
                             <div class="panel-heading panel-heading-gray" data-toggle="collapse" data-target="#curriculum-2">
@@ -123,6 +127,7 @@
             <!-- /st-content -->
         </div>
                         {% endfor %}
+                    {% endif %}
                 </div>
             </div>
 

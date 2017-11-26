@@ -17,16 +17,6 @@
                                     <h1 class="text-display-1 margin-none">Library</h1>
                                     <p class="text-subhead">Browse through our Course.</p>
                                 </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right">
-                                        <div class="btn-group">
-                                            <a class="btn btn-grey-800" href="app-directory-grid.html"><i
-                                                    class="fa fa-th"></i></a>
-                                            <a class="btn btn-white" href="app-directory-list.html"><i
-                                                    class="fa fa-list"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -36,9 +26,9 @@
                                 <div class="panel panel-default paper-shadow" data-z="0.5">
 
                                     <div class="panel-body">
-                                        <p><a href="{% url 'course_detail' list.pk list.slug %}"><img src="{{ list.image.url }}" height=auto width=auto class="img-rounded img-responsive"></a></p>
+                                        <p><a href="#"><img src="{{ list.image.url }}" height=auto width=auto class="img-rounded img-responsive"></a></p>
                                         <h4 class="text-headline margin-v-0-10"><a
-                                                href="{% url 'course_detail' list.pk list.slug %}">{{ list.title }}</a>
+                                                href="#">{{ list.title }}</a>
                                         </h4>
                                         <p class="small margin-none">
                                             <span class="fa fa-fw fa-star text-yellow-800"></span>

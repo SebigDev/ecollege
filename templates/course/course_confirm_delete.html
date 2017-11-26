@@ -1,0 +1,41 @@
+{% extends 'layouts/master.html' %}
+{% load staticfiles %}
+{% block title %}
+Tutor Courses
+{% endblock %}
+{% block content %}
+    {% include 'layouts/tutor_navbar.html' %}
+   <div class="st-content" style="margin-left: 20%">
+   <div class="st-content-inner padding-none">
+                <!-- extra div for emulating position:fixed of the menu -->
+                <div class="st-content-inner padding-none">
+                    <div class="container-fluid">
+                        <div class="page-section">
+                            <h1 class="text-display-1">Delete  {{ object }}</h1>
+    <div class="row" data-toggle="isotope">
+                            <div class="item col-xs-12 col-lg-10">
+                                <div class="panel panel-default" data-z="0.5">
+                                    <div class="panel-heading">
+                                        <div class="media v-middle">
+                                            <div class="media-body">
+                                            <form method="post">{% csrf_token %}
+                                                <h3 class="text-info text-center">
+                                                    Are you sure you want to delete "{{ object }}" ?
+                                                </h3>
+                                                <button class="btn btn-danger">
+                                                    Delete
+                                                </button>
+                                            </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    </div>
+   </div>
+                    </div>
+                </div>
+   </div>
+   </div>
+       {% endblock %}

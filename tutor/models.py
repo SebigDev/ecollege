@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
-from student.models import Student
+from django.urls import reverse
 
 
 class Tutor(models.Model):
@@ -31,13 +30,3 @@ class Tutor(models.Model):
 
     def __str__(self):
         return self.tutor_user.username
-
-
-class TutorStudent(models.Model):
-    tutor_student = models.ManyToManyField(Student, related_name='tutor')
-
-    class Meta:
-        verbose_name_plural = 'Tutor Student'
-
-    def __str__(self):
-        return self.tutor_student.name

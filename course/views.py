@@ -1,7 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
 
+from student.models import Student
 from .models import *
+from tutor.models import *
 
 
 class CourseListView(LoginRequiredMixin, ListView):
@@ -17,6 +19,7 @@ class CourseListView(LoginRequiredMixin, ListView):
         context = super(CourseListView, self).get_context_data(**kwargs)
         context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
         context['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
+        context['course_cat'] = CourseCategory.objects.all()
         return context
 
 
@@ -30,8 +33,9 @@ class CourseDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
-        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
-        context['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
+        context['student'] = Student.objects.get(student_user=self.request.user)
+        context['course'] = Course.objects.filter()
+        context['student'] = Student.objects.filter()
         return context
 
 
@@ -45,8 +49,8 @@ class CourseEnrolDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseEnrolDetailView, self).get_context_data(**kwargs)
-        context['topic'] = Topic.objects.filter(topics_course=self.object).order_by('id')
-        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        context['topic'] = Topic.objects.filter().order_by('id')
+        context['student'] = Student.objects.get(student_user=self.request.user)
         context['course_cat'] = CourseCategory.objects.filter(course_category=self.object)
         return context
 

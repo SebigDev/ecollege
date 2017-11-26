@@ -1,11 +1,177 @@
 {% extends 'layouts/master.html' %}
 {% load staticfiles %}
 {% block title %}
-Login
+{{ tutor.tutor_user }}'s Profile
 {% endblock %}
 {% block content %}
-{% if request.user.is_authenticated %}
-    <a href="{% url 'profile' tutor_profile.pk %}">Profile</a>
+    {% include 'layouts/tutor_navbar.html' %}
+{% if request.user.is_authenticated and request.user.is_active %}
+            <div class="st-content" style="margin-left: 20%;">
+                <!-- extra div for emulating position:fixed of the menu -->
+                <div class="st-content-inner padding-none">
+                    <div class="container-fluid">
+                        <div class="page-section third">
+                            <!-- Tabbable Widget -->
+                            <div class="tabbable paper-shadow relative" data-z="0.5">
+                                <!-- Tabs -->
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="app-student-profile.html"><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">
+                                        <b>{{ tutor.tutor_user }}</b>'s Profile Information
+                                    </span></a></li>
+
+                                </ul>
+                                <!-- // END Tabs -->
+                                <!-- Panes -->
+                                <div class="tab-content">
+                                    <div id="account" class="tab-pane active">
+                                        <form class="form-horizontal">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                                                <div class="col-md-6">
+                                                    <div class="media v-middle">
+                                                        <div class="media-left">
+                                                            <div class="icon-block width-100 bg-grey-100">
+                                                                <p>
+                                                                     <img src="{{ tutor.photo.url }}" height="100" width="100" class="img-rounded">
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">Full Name</label>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-control-material">
+                                                        <div class="input-group">
+                                                           {{ tutor.tutor_user.first_name}}
+                                                        </div>
+                                                    </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-control-material">
+                                                                <div class="input-group">
+                                                           {{ tutor.tutor_user.last_name}}
+                                                        </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">Email</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-control-material">
+                                                        <div class="input-group">
+                                                           {{ tutor.tutor_user.email}}
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">Phone</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-control-material">
+                                                        <div class="input-group">
+                                                           {{ tutor.phone}}
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">Role</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-control-material">
+                                                        <div class="input-group">
+                                                           {{ tutor.role}}
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">Website</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-control-material">
+                                                        <div class="input-group">
+                                                           {{ tutor.website}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">Bio</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-control-material">
+                                                       <div class="input-group">
+                                                           {{ tutor.bio}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">Address</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-control-material">
+                                                        <div class="input-group">
+                                                           {{ tutor.address}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">State</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-control-material">
+                                                        <div class="input-group">
+                                                           {{ tutor.state}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-md-2 control-label">Country</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-control-material">
+                                                        <div class="input-group">
+                                                           {{ tutor.country}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-6">
+                                                    <div class="checkbox checkbox-success">
+                                                        <input id="checkbox3" type="checkbox" checked="">
+                                                        <label for="checkbox3">Subscribe to our Newsletter</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group margin-none">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <button type="submit" class="btn btn-default paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>
+                                                        <a href="{% url 'profile_edit' object.tutor_user object.pk  %}">Update Profile</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- // END Panes -->
+                            </div>
+                            <!-- // END Tabbable Widget -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /st-content-inner -->
+            </div>
+    {% else %}
+    <h3 class="text-info">You cannot view the profile</h3>
 
     {% endif %}
 

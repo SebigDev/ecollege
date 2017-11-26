@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from course.models import Course
+
 
 class Student(models.Model):
     STUDENT = 1
@@ -15,6 +17,7 @@ class Student(models.Model):
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
     age = models.PositiveIntegerField()
     gender = models.CharField(max_length=20, choices=(('Male', 'Male'), ('Female', 'Female')))
+    picture = models.ImageField(upload_to='student')
     address = models.CharField(max_length=500)
     state = models.CharField(max_length=200)
     country = models.CharField(max_length=200)
@@ -27,11 +30,8 @@ class Student(models.Model):
 
 
 class StudentCourse(models.Model):
-    _student = models.ForeignKey(Student, verbose_name='Student Assigned')
+    my_course = models.ManyToManyField(Course)
 
     class Meta:
         verbose_name_plural = 'Student Course'
-
-    def __str__(self):
-        return self.pk
 

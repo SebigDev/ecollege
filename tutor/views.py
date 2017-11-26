@@ -1,12 +1,15 @@
+from builtins import super
+
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.urls import reverse
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
 
 from tutor.models import Tutor
-from course.models import Course, CourseCategory, Topic
+from course.models import Course, CourseCategory
+from student.models import Student
 
 
-class TutorDashboardView(LoginRequiredMixin, ListView):
+class TutorDashboardView(LoginRequiredMixin, DetailView):
     model = Tutor
     context_object_name = 'dashboard_list'
     template_name = 'tutor/tutor_board.html'
@@ -16,20 +19,23 @@ class TutorDashboardView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorDashboardView, self).get_context_data(**kwargs)
-        context['tutor'] = Tutor.objects.filter(tutor_user=self.request.user)
+        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
         context['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
+        context['student'] = Student.objects.filter()
         return context
 
 
-class TutorCourseListView(LoginRequiredMixin, ListView):
+class TutorCourseListView(LoginRequiredMixin, DetailView):
     model = CourseCategory
     template_name = 'tutor/tutor_course.html'
     login_url = '/account/login'
     redirect_field_name = 'redirect_to'
     raise_exception = True
 
+
     def get_context_data(self, **kwargs):
         t = super(TutorCourseListView, self).get_context_data(**kwargs)
+        t['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
         t['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
         return t
 
@@ -38,23 +44,36 @@ class TutorCourseCreateView(LoginRequiredMixin, CreateView):
     model = Course
     fields = ['category', 'title', 'slug', 'image', 'blob', 'description', 'tutor']
     template_name = 'tutor/create.html'
-    success_url = reverse_lazy('tutor_course')
-    login_url = '/account/login'
     redirect_field_name = 'redirect_to'
-    raise_exception = True
+    login_url = 'account/login'
 
-    def form_valid(self, form):
-        return super(TutorCourseCreateView, self).form_valid(form)
+    def get_success_url(self):
+        return reverse('tutor_course', kwargs={
+            'pk': self.object.pk,
+        })
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        return context
 
 
 class TutorCourseUpdateView(LoginRequiredMixin, UpdateView):
     model = Course
-    fields = ['category', 'title', 'slug', 'image', 'blob', 'description', 'tutor']
+    fields = ['category', 'title', 'slug', 'image', 'blob', 'description']
     template_name = 'tutor/edit.html'
-    success_url = reverse_lazy('dashboard_list')
     login_url = '/account/login'
     redirect_field_name = 'redirect_to'
-    raise_exception = True
+
+    def get_success_url(self):
+        return reverse('tutor_course', kwargs={
+            'pk': self.object.pk,
+        })
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        return context
 
     def form_valid(self, form):
         return super(TutorCourseUpdateView, self).form_valid(form)
@@ -64,6 +83,52 @@ class TutorCourseDeleteView(LoginRequiredMixin, DeleteView):
     model = Course
     login_url = 'account/login'
     redirect_field_name = 'redirect_to'
+
+    def get_success_url(self):
+        return reverse('tutor_course', kwargs={
+            'pk': self.object.pk,
+        })
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        return context
+
+
+class TutorsListView(LoginRequiredMixin, ListView):
+    model = Tutor
+    template_name = 'tutor/tutor_list.html'
+
+    def get_context_data(self, **kwargs):
+        tuts = super(TutorsListView, self).get_context_data(**kwargs)
+        tuts['our_list'] = Tutor.objects.all()
+        tuts['log_tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        return tuts
+
+
+class TutorProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Tutor
+    fields = ['phone', 'website', 'bio', 'address', 'state', 'country']
+
+    def get_success_url(self):
+        return reverse('profile', kwargs={
+            'pk': self.object.pk,
+            'tutor_user': self.object.tutor_user
+        })
+
+
+class TutorProfileDetailView(LoginRequiredMixin, DetailView):
+    model = Tutor
+    context_object_name = 'profile'
+    template_name = 'tutor/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TutorProfileDetailView, self).get_context_data(**kwargs)
+        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        return context
+
+
+
 
 
 

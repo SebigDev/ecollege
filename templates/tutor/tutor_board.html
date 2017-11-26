@@ -10,7 +10,7 @@ Tutor Dashboard
                 <div class="st-content-inner padding-none">
                     <div class="container-fluid">
                         <div class="page-section">
-                            <h1 class="text-display-1">{{ tutor.get }}'s Dashboard</h1>
+                            <h1 class="text-display-1">{{ object.tutor_user.username }}'s Dashboard</h1>
                         </div>
                         <div class="row" data-toggle="isotope">
                             <div class="item col-xs-12 col-lg-6">
@@ -18,7 +18,7 @@ Tutor Dashboard
                                     <div class="panel-heading">
                                         <div class="media v-middle">
                                             <div class="media-body">
-                                                <h4 class="text-headline margin-none">Earnings</h4>
+                                                <h4 class="text-headline margin-none">Records</h4>
                                                 <p class="text-subhead text-light">This Month</p>
                                             </div>
                                             <div class="media-right">
@@ -34,12 +34,16 @@ Tutor Dashboard
                                     <div class="panel-body">
                                         <div class="row text-center">
                                             <div class="col-md-6">
-                                                <h4 class="margin-none">Gross Revenue</h4>
-                                                <p class="text-display-1 text-warning margin-none">102.4k</p>
+                                                <h4 class="margin-none">No Of Students</h4>
+                                                <p class="text-display-1 text-warning margin-none">
+                                                   {{ student.count }}+
+                                                </p>
                                             </div>
                                             <div class="col-md-6">
-                                                <h4 class="margin-none">Net Revenue</h4>
-                                                <p class="text-display-1 text-success margin-none">55k</p>
+                                                <h4 class="margin-none">No Of Courses</h4>
+                                                <p class="text-display-1 text-success margin-none">
+                                                    {{ course.count }}+
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +59,7 @@ Tutor Dashboard
                                         {% for course in course %}
                                         <li class="list-group-item media v-middle">
                                             <div class="media-body">
-                                                <a href="{% url 'course_detail' course.pk course.slug %}" class="text-subhead list-group-link">
+                                                <a href="#" class="text-subhead list-group-link">
                                                     {{ course.title }}
                                                 </a>
                                             </div>
@@ -99,7 +103,8 @@ Tutor Dashboard
                                                 </div>
                                             </div>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias, blanditiis eligendi expedita ipsam minus non numquam quidem reiciendis ut?</p>
-                                            <p class="text-light"><span class="caption">Course:</span> <a href="app-student-course.html">Basics Of HTML</a></p>
+                                            <p class="text-light"><span class="caption">Course:</span>
+                                                <a href="#">{{ course.last }}</a></p>
                                         </li>
 
                                     </ul>

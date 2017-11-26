@@ -74,14 +74,12 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="collapse navbar-collapse" id="main-nav">
                 <ul class="nav navbar-nav navbar-nav-margin-left">
                     {% if request.user.is_authenticated  %}
+                        {% if request.is_staff %}
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutor<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Tutors</a></li>
-                            <li><a href="#">Forum Home</a></li>
-                            <li><a href="#">Forum Category</a></li>
-                            <li><a href="#">Forum Thread</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ object.get_absolute_url }}">Dashboard</a></li>
+                            <li><a href="#">Single Course</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -91,6 +89,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                             <li><a href="#">Single Course</a></li>
                         </ul>
                     </li>
+                            {% endif %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -117,7 +116,10 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                 <li class="dropdown">
                 <div class="">
                             <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                                 <img src="{% static 'images/Sebig.png' %}" alt="" class="img-circle" width="40" />
+
+                                 <img src="{{ request.get }}" alt="" class="img-circle" width="40" />
+
+
                                 {% firstof user.get_short_name user.get_username %}
                                <span class="caret"></span>
                             </a>

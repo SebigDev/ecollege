@@ -16,7 +16,7 @@ import smtplib
 from django.core.urlresolvers import reverse_lazy
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = 'account/login'
+LOGIN_URL = '/accounts/login'
 LOGOUT_URL = '/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

@@ -27,14 +27,13 @@
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="{% url 'course_available'%}">Courses List</a></li>
-                                <li><a href="#">Single Course</a></li>
+                                <li class="active"><a href="app-directory-grid.html">Courses List</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="app-student-dashboard.html">Dashboard</a></li>
+                                <li><a href="{% url 'student_dashboard' student.pk %}">Dashboard</a></li>
                                 <li><a href="app-student-courses.html">My Courses</a></li>
                                 <li><a href="app-take-course.html">Take Course</a></li>
                                 <li><a href="app-course-forums.html">Course Forums</a></li>
@@ -44,21 +43,13 @@
                                 <li><a href="app-student-messages.html">Messages</a></li>
                             </ul>
                         </li>
-                        {% if tutor %}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instructor <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutors<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="app-instructor-dashboard.html">Dashboard</a></li>
+                                <li><a href="app-instructor-dashboard.html">My Tutors</a></li>
                                 <li><a href="app-instructor-courses.html">My Courses</a></li>
-                                <li><a href="app-instructor-course-edit-course.html">Edit Course</a></li>
-                                <li><a href="app-instructor-earnings.html">Earnings</a></li>
-                                <li><a href="app-instructor-statement.html">Statement</a></li>
-                                <li><a href="app-instructor-profile.html">Edit Profile</a></li>
-                                <li><a href="app-instructor-billing.html">Edit Billing</a></li>
-                                <li><a href="app-instructor-messages.html">Messages</a></li>
                             </ul>
                         </li>
-                        {% endif %}
                     </ul>
                     <ul class="nav navbar-nav navbar-nav-bordered navbar-right">
                         <!-- notifications -->
@@ -118,7 +109,7 @@
                         <!-- User -->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                                 <img src="{{ get_student.picture.url }}" alt="" class="img-circle" width="40" />
+                                 <img src="{{ student.picture.url }}" alt="" class="img-circle" width="40" />
                                 {% firstof user.get_short_name user.get_username %}
                                <span class="caret"></span>
                             </a>
@@ -137,13 +128,11 @@
         <div class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-visible-desktop sidebar-visible-mobile sidebar-skin-dark" id="sidebar-menu" data-type="collapse">
             <div data-scrollable>
                 <ul class="sidebar-menu sm-icons-right">
-                    <li><a href="app-student-dashboard.html"><i class="fa fa-bar-chart-o"></i><span>Dashboard</span></a></li>
+                    <li><a href="{% url 'student_dashboard' student.pk %}"><i class="fa fa-bar-chart-o"></i><span>Dashboard</span></a></li>
                     <li class="hasSubmenu active open">
                         <a href="#course-menu"><i class="fa fa-mortar-board"></i><span>Courses</span></a>
                         <ul id="course-menu" class="in">
-                            <li class="active"><a href="app-directory-grid.html"><span>Courses Grid</span></a></li>
                             <li><a href="app-directory-list.html"><span>Courses List</span></a></li>
-                            <li><a href="app-student-course.html"><span>Course Page</span></a></li>
                             <li><a href="app-student-courses.html"><span>My Courses</span></a></li>
                             <li><a href="app-take-course.html"><span>Take Course</span></a></li>
                             <li><a href="app-course-forums.html"><span>Course Forums</span></a></li>

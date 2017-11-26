@@ -24,32 +24,11 @@
                                 <li><a href="app-forum-category.html">Forum Category</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ course_list.get_absolute.url }}">Courses List</a></li>
-                                <li><a href="{{ course_detail.get_absolute.url }}">Course Details</a></li>
-                            </ul>
-                        </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutor <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="app-student-dashboard.html">Dashboard</a></li>
-                                <li><a href="app-student-courses.html">My Courses</a></li>
-                                <li><a href="app-take-course.html">Take Course</a></li>
-                                <li><a href="app-course-forums.html">Course Forums</a></li>
-                                <li><a href="app-take-quiz.html">Take Quiz</a></li>
-                                <li><a href="app-student-profile.html">Edit Profile</a></li>
-                                <li><a href="app-student-messages.html">Messages</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instructor <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="app-instructor-dashboard.html">Dashboard</a></li>
-                                <li><a href="app-instructor-courses.html">My Courses</a></li>
-                                <li><a href="app-instructor-course-edit-course.html">Edit Course</a></li>
-                                <li><a href="app-instructor-messages.html">Messages</a></li>
+                                <li><a href="{% url 'dashboard_list' tutor.pk %}">Dashboard</a></li>
+                                <li><a href="{% url 'tutor_course' tutor.pk %}">My Courses</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -131,19 +110,6 @@
             <div data-scrollable>
                 <ul class="sidebar-menu sm-icons-right">
                     <li><a href="app-student-dashboard.html"><i class="fa fa-bar-chart-o"></i><span>Dashboard</span></a></li>
-                    <li class="hasSubmenu active open">
-                        <a href="#course-menu"><i class="fa fa-mortar-board"></i><span>Courses</span></a>
-                        <ul id="course-menu" class="in">
-                            <li class="active"><a href="app-directory-grid.html"><span>Courses Grid</span></a></li>
-                            <li><a href="app-directory-list.html"><span>Courses List</span></a></li>
-                            <li><a href="app-student-course.html"><span>Course Page</span></a></li>
-                            <li><a href="app-student-courses.html"><span>My Courses</span></a></li>
-                            <li><a href="app-take-course.html"><span>Take Course</span></a></li>
-                            <li><a href="app-course-forums.html"><span>Course Forums</span></a></li>
-                            <li><a href="app-course-forum-thread.html"><span>Course Forum Thread</span></a></li>
-                            <li><a href="app-take-quiz.html"><span>Take Quiz</span></a></li>
-                        </ul>
-                    </li>
                     <li class="hasSubmenu">
                         <a href="#forum-menu"><i class="fa fa-file-text-o"></i><span>Forum</span></a>
                         <ul id="forum-menu">
@@ -166,16 +132,14 @@
         </div>
         <div class="sidebar right sidebar-size-3 sidebar-offset-0 sidebar-visible-desktop sidebar-skin-white" id="sidebar-library">
             <div data-scrollable>
-                <h4 class="category">Category</h4>
+                <h4 class="category">Course Categories</h4>
                 <ul class="sidebar-block list-group list-group-menu list-group-minimal">
-                    <li class="list-group-item"><a href="#"><span class="badge pull-right">120+</span> Design</a></li>
-                    <li class="list-group-item active"><a href="#"><span class="badge pull-right">30+</span> Programming</a></li>
-                    <li class="list-group-item"><a href="#"><span class="badge pull-right">40+</span> WordPress</a></li>
-                    <li class="list-group-item"><a href="#"><span class="badge pull-right">60+</span> Workflow</a></li>
-                    <li class="list-group-item"><a href="#"><span class="badge pull-right">15+</span> HTML</a></li>
-                    <li class="list-group-item"><a href="#"><span class="badge pull-right">25+</span> CSS</a></li>
-                    <li class="list-group-item"><a href="#"><span class="badge pull-right">35+</span> iOS</a></li>
-                    <li class="list-group-item"><a href="#"><span class="badge pull-right">20+</span> Free</a></li>
+                    {% for cat in course_cat %}
+                    <li class="list-group-item"><a href="{% url 'course_listing' %}"><span class="badge pull-right">
+                        {{ course.count }}+</span>
+                        {{ cat.course_type }}
+                    </a></li>
+                    {% endfor %}
                 </ul>
                 <h4 class="category">View</h4>
                 <div class="sidebar-block">

@@ -1,3 +1,4 @@
+{% if request.user.is_active and request.user.is_authenticated %}
 <div class="st-container">
         <!-- Fixed navbar -->
         <div class="navbar navbar-size-large navbar-default navbar-fixed-top" role="navigation">
@@ -24,18 +25,11 @@
                                 <li><a href="app-forum-category.html">Forum Category</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'course_listing' %}">Courses List</a></li>
-                                <li><a href="#">Course Details</a></li>
-                            </ul>
-                        </li>
                         <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instructor <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutor<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url 'dashboard_list' %}">My Dashboard</a></li>
-                                <li><a href="{% url 'tutor_course' request.user %}">My Courses</a></li>
+                                <li><a href="{% url 'dashboard_list' tutor.pk %}">My Dashboard</a></li>
+                                <li><a href="{% url 'tutor_course' tutor.pk %}">My Courses</a></li>
                                 <li><a href="app-instructor-messages.html">Messages</a></li>
 
                             </ul>
@@ -99,9 +93,8 @@
                         <!-- User -->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                                <img src="{{ tutor.first_name }}" alt="Bill" class="img-circle" width="40" />
+                                <img src="{{ tutor.photo.url }}" alt="Bill" class="img-circle" width="40" />
                                 {{ tutor.tutor_user.first_name }}
-                                <span class="caret"></span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
@@ -121,21 +114,24 @@
                 <div class="sidebar-block">
                     <div class="profile">
                         <a href="#">
-                            <img src="{{ request.user.url }}" alt="people" class="img-circle width-80" />
+                            <img src="{{ tutor.photo.url }}" alt="people" class="img-circle width-80" />
                         </a>
-                        <h4 class="text-display-1 margin-none">Instructor Name</h4>
+                        <h4 class="text-display-1 margin-none">
+                            {{ tutor.tutor_user.first_name }} {{ tutor.tutor_user.last_name }}
+                        </h4>
                     </div>
                 </div>
                 <ul class="sidebar-menu">
-                    <li class="active"><a href="app-instructor-dashboard.html"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
-                    <li><a href="app-instructor-messages.html"><i class="fa fa-paper-plane"></i><span>Messages</span></a></li>
-                    <li><a href="app-instructor-courses.html"><i class="fa fa-mortar-board"></i><span>My Courses</span></a></li>
-                    <li><a href="app-instructor-earnings.html"><i class="fa fa-bar-chart-o"></i><span>Earnings</span></a></li>
-                    <li><a href="app-instructor-statement.html"><i class="fa fa-dollar"></i><span>Statement</span></a></li>
-                    <li><a href="#"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+                    <li class="active"><a href="{% url 'dashboard_list' tutor.pk %}"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
+                    <li><a href="{% url 'profile' tutor.tutor_user tutor.pk %}"><i class="fa fa-paper-plane"></i><span>Profile</span></a></li>
+                    <li><a href="{% url 'tutor_course' tutor.pk %}"><i class="fa fa-mortar-board"></i><span>My Courses</span></a></li>
+                    <li><a href="#"><i class="fa fa-bar-chart-o"></i><span>Earnings</span></a></li>
+                    <li><a href="#"><i class="fa fa-dollar"></i><span>Statement</span></a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
                 </ul>
             </div>
         </div>
+    {% endif %}
 
         <!-- /st-pusher -->
         <!-- Footer -->
