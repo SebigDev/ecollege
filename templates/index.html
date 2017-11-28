@@ -74,35 +74,32 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="collapse navbar-collapse" id="main-nav">
                 <ul class="nav navbar-nav navbar-nav-margin-left">
                     {% if request.user.is_authenticated  %}
-                        {% if request.is_staff %}
+                        {% if request.user.is_staff %}
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutor<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ object.get_absolute_url }}">Dashboard</a></li>
+                            <li><a href="{% url 'dashboard_list' tutor.pk %}">Dashboard</a></li>
                             <li><a href="#">Single Course</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'course_listing' %}">Course List</a></li>
                             <li><a href="#">Single Course</a></li>
                         </ul>
                     </li>
-                            {% endif %}
+
+                        {% else %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="website-student-dashboard.html">Dashboard</a></li>
-                            <li><a href="website-student-courses.html">My Courses</a></li>
-                            <li><a href="website-take-course.html">Take Course</a></li>
-                            <li><a href="website-course-forums.html">Course Forums</a></li>
-                            <li><a href="website-take-quiz.html">Take Quiz</a></li>
-                            <li><a href="website-student-messages.html">Messages</a></li>
-                            <li><a href="website-student-profile.html">Private Profile</a></li>
+                            <li><a href="{% url 'student_dashboard' student.pk %}">Dashboard</a></li>
+                            <li><a href="{% url 'student_course' student.pk %}">My Courses</a></li>
                         </ul>
                     </li>
                     {% endif %}
+                            {% endif %}
                     <li><a href="#">Our Services</a></li>
                     <li><a href="{% url 'contact' %}">Contact Us</a></li>
                     <li><a href="#">About Us</a></li>

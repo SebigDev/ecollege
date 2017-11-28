@@ -4,9 +4,8 @@
 Edit Profile
 {% endblock %}
 {% block content %}
-    {% include 'layouts/tutor_navbar.html' %}
-
-<div class="st-content-inner padding-none" style="margin-left: 20%">
+{% include 'layouts/student_navbar.html' %}
+     <div class="st-content-inner padding-none" style="margin-left: 20%">
 {% if request.user.is_active %}
 <h3 class="text-left">Update Profile</h3>
   <table class="table table-striped">
@@ -22,7 +21,4 @@ Edit Profile
 {% else %}
 <h4 class="text-info">You cannot access this tutor's edit profile</h4>
 {% endif %}
-
-</div>
-
 {% endblock %}

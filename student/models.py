@@ -35,3 +35,4 @@ class StudentCourse(models.Model):
     class Meta:
         verbose_name_plural = 'Student Course'
 
+

@@ -6,7 +6,7 @@ from tutor.models import Tutor
 
 class CourseCategory(models.Model):
     course_type = models.CharField(max_length=200)
-    course_level = models.CharField(max_length=255, choices=(('beg', 'Beginner'), ('inter', 'Intermediate'), ('advance', 'Advanced')))
+    course_level = models.CharField(max_length=255, choices=(('beginner', 'Beginner'), ('intermediate', 'Intermediate'), ('advanced', 'Advanced')))
 
     class Meta:
         verbose_name_plural = 'Course Category'

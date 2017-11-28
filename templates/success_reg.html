@@ -1,0 +1,6 @@
+{% extends 'layouts/master.html' %}
+{% load staticfiles %}
+{% block content %}
+    <h3 class="text-center text-success">Hello <b>{{ request.user }} </b>, You have successfully registered on our Portal<br>
+    Please Click <a href="{% url 'login' %}">Here</a> to Login and update your profile.</h3>
+{% endblock %}

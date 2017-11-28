@@ -127,7 +127,7 @@
                                         <div class="panel-body text-center">
                                             <p>
                                                 <a class="btn btn-success btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated
-                                                   href="{% url 'course_enrol' object.pk object.slug %}">
+                                                   href="{% url 'course_enrol' object.pk object.slug|slugify %}">
                                                     Start Course
                                                 </a>
                                             </p>
@@ -158,7 +158,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="media-body">
-                                                        <a href="{% url 'course_detail' course.pk course.slug %}" class="link-text-color"><span>
+                                                        <a href="{% url 'course_detail' course.pk course.slug|slugify %}" class="link-text-color"><span>
                                                             {{ course.title }}</span></a>
                                                     </div>
                                                 </div>

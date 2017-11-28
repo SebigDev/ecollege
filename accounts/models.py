@@ -1,3 +1,11 @@
-from django.db import models
+from django.contrib.auth.models import User
+from accounts.forms import forms
+from student.models import Student
+from tutor.models import Tutor
 
-# Create your models here.
+
+class UserForm(forms.ModelForm):
+        class Meta:
+                model = User
+                fields = ["username", "email", "password"]
+

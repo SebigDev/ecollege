@@ -1,0 +1,30 @@
+{% extends 'layouts/master.html' %}
+{% load staticfiles %}
+{% block title %}
+Students Dashboard
+{% endblock %}
+{% block content %}
+{% if not request.user.is_anonymous %}
+{% include 'layouts/student_navbar.html' %}
+     <div class="st-content-inner padding-none" style="margin-left: 20%">
+<h3 class="text-left">Select A Course</h3>
+
+<table class="table table-striped">
+      <form action="" method="post">
+          {% csrf_token %}
+         <tr>
+
+          <li class="list-group-item">
+              {{ form.my_course }}
+          </li>
+         </tr>
+          <tr>
+              <td><button>Save</button></td>
+          </tr>
+
+      </form>
+  </table>
+    </div>
+          {% endif %}
+
+{% endblock %}

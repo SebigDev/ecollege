@@ -46,7 +46,7 @@ All Courses
                                     </div>
                                     <div class="panel-body">
                                         <h4 class="text-headline margin-v-0-10">
-                                            <a href="{% url 'course_detail' all.pk all.slug %}">{{ all.title }}</a></h4>
+                                            <a href="{% url 'course_detail' all.pk all.slug|slugify %}">{{ all.title }}</a></h4>
                                     </div>
                                     <hr class="margin-none" />
                                     <div class="panel-body">

@@ -28,10 +28,9 @@ class TutorDashboardView(LoginRequiredMixin, DetailView):
 class TutorCourseListView(LoginRequiredMixin, DetailView):
     model = CourseCategory
     template_name = 'tutor/tutor_course.html'
-    login_url = '/account/login'
+    login_url = '/accounts/login'
     redirect_field_name = 'redirect_to'
     raise_exception = True
-
 
     def get_context_data(self, **kwargs):
         t = super(TutorCourseListView, self).get_context_data(**kwargs)
@@ -62,7 +61,7 @@ class TutorCourseUpdateView(LoginRequiredMixin, UpdateView):
     model = Course
     fields = ['category', 'title', 'slug', 'image', 'blob', 'description']
     template_name = 'tutor/edit.html'
-    login_url = '/account/login'
+    login_url = '/accounts/login'
     redirect_field_name = 'redirect_to'
 
     def get_success_url(self):
@@ -71,7 +70,7 @@ class TutorCourseUpdateView(LoginRequiredMixin, UpdateView):
         })
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(TutorCourseUpdateView, self).get_context_data(**kwargs)
         context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
         return context
 
@@ -81,7 +80,7 @@ class TutorCourseUpdateView(LoginRequiredMixin, UpdateView):
 
 class TutorCourseDeleteView(LoginRequiredMixin, DeleteView):
     model = Course
-    login_url = 'account/login'
+    login_url = '/accounts/login'
     redirect_field_name = 'redirect_to'
 
     def get_success_url(self):
@@ -90,7 +89,7 @@ class TutorCourseDeleteView(LoginRequiredMixin, DeleteView):
         })
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(TutorCourseDeleteView, self).get_context_data(**kwargs)
         context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
         return context
 

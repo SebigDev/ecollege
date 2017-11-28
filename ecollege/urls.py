@@ -5,11 +5,13 @@ from django.contrib import admin
 from .import views
 
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^student/', include('student.urls')),
     url(r'^course/', include('course.urls')),
     url(r'^tutor/', include('tutor.urls')),
     url(r'^contact/$', views.contact, name='contact'),
+    url(r'^success-registration/$', views.success_reg, name='success_reg'),
+    url(r'^login_redirect/$', views.login_redirect, name='login_redirect'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

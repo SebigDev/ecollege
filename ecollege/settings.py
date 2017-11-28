@@ -14,8 +14,9 @@ import os
 import smtplib
 
 from django.core.urlresolvers import reverse_lazy
+from django.http import request
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/login_redirect'
 LOGIN_URL = '/accounts/login'
 LOGOUT_URL = '/'
 

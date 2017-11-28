@@ -130,16 +130,12 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li class="active"><a href="{% url 'student_dashboard' student.pk %}"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
-                    <li><a href="#"><i class="fa fa-paper-plane"></i><span>Profile</span></a></li>
-                    <li><a href="#"><i class="fa fa-mortar-board"></i><span>My Courses</span></a></li>
-                    <li><a href="#"><i class="fa fa-bar-chart-o"></i><span>Earnings</span></a></li>
+                    <li><a href="{% url 'student_profile' student.pk %}"><i class="fa fa-paper-plane"></i><span>Profile</span></a></li>
+                    <li><a href="{% url 'my_courses' student.pk %}"><i class="fa fa-mortar-board"></i><span>My Courses</span></a></li>
+                    <li><a href="{% url 'student_course' student.pk %}"><i class="fa fa-plus"></i><span>Register</span></a></li>
                     <li><a href="#"><i class="fa fa-dollar"></i><span>Statement</span></a></li>
                     <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
                 </ul>
             </div>
         </div>
     {% endif %}
-
-        <!-- /st-pusher -->
-        <!-- Footer -->
-
