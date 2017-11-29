@@ -7,13 +7,13 @@ Edit Profile
 {% include 'layouts/student_navbar.html' %}
      <div class="st-content-inner padding-none" style="margin-left: 20%">
 {% if request.user.is_active %}
-<h3 class="text-left">Update Profile</h3>
+<h3 class="text-left">Add Your Course</h3>
   <table class="table table-striped">
       <form action="" method="post">
           {% csrf_token %}
           <li class="list-group-item">{{ form.as_table }}</li>
           <tr>
-              <td><button>Update</button></td>
+              <td><button>Save</button></td>
           </tr>
 
       </form>

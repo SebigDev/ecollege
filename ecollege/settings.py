@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'accounts',
     'crispy_forms',
     'captcha',
+    'debug_panel',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'ecollege.urls'

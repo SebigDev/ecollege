@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -29,10 +30,13 @@ class Student(models.Model):
         return self.student_user.username
 
 
-class StudentCourse(models.Model):
-    my_course = models.ManyToManyField(Course)
+class StudentCourses(models.Model):
+    student = models.ForeignKey(User)
+    student_course = models.ManyToManyField(Course)
 
     class Meta:
-        verbose_name_plural = 'Student Course'
+        verbose_name_plural = 'Student Courses'
+
+
 
 

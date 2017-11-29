@@ -33,7 +33,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url 'student_dashboard' student.pk %}">Dashboard</a></li>
+                                <li><a href="{% url 'student_dashboard' %}">Dashboard</a></li>
                                 <li><a href="app-student-courses.html">My Courses</a></li>
                                 <li><a href="app-take-course.html">Take Course</a></li>
                                 <li><a href="app-course-forums.html">Course Forums</a></li>
@@ -128,7 +128,7 @@
         <div class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-visible-desktop sidebar-visible-mobile sidebar-skin-dark" id="sidebar-menu" data-type="collapse">
             <div data-scrollable>
                 <ul class="sidebar-menu sm-icons-right">
-                    <li><a href="{% url 'student_dashboard' student.pk %}"><i class="fa fa-bar-chart-o"></i><span>Dashboard</span></a></li>
+                    <li><a href="{% url 'student_dashboard' %}"><i class="fa fa-bar-chart-o"></i><span>Dashboard</span></a></li>
                     <li class="hasSubmenu active open">
                         <a href="#course-menu"><i class="fa fa-mortar-board"></i><span>Courses</span></a>
                         <ul id="course-menu" class="in">

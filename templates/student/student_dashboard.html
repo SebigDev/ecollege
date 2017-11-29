@@ -23,7 +23,7 @@ Students Dashboard
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    Your subscription ends on <span class="text-body-2">25 February 2015</span>
+                                   You have registered  <strong>{{ course.count }} </strong> Courses so far.
                                 </div>
                                 <div class="media-right media-padding">
                                     <a class="btn btn-white paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated href="#">
@@ -37,13 +37,14 @@ Students Dashboard
                                 <div class="panel panel-default paper-shadow" data-z="0.5">
                                     <div class="panel-heading">
                                         <h4 class="text-headline margin-none">Courses</h4>
-                                        <p class="text-subhead text-light">Your courses</p>
+                                        <p class="text-subhead text-light">Your Registered courses</p>
                                     </div>
                                     <ul class="list-group">
                                         {% if course %}
+                                        {% for courses in course %}
                                         <li class="list-group-item media v-middle">
                                             <div class="media-body">
-                                                <a href="app-take-course.html" class="text-subhead list-group-link">Basics of HTML</a>
+                                                <a href="app-take-course.html" class="text-subhead list-group-link">{{ courses.title }}</a>
                                             </div>
                                             <div class="media-right">
                                                 <div class="progress progress-mini width-100 margin-none">
@@ -52,6 +53,7 @@ Students Dashboard
                                                 </div>
                                             </div>
                                         </li>
+                                        {% endfor %}
                                         {% else %}
                                         <h5 class="text-center">No Registered Course(s) yet</h5>
                                         {% endif %}

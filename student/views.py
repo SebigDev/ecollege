@@ -1,72 +1,84 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from django.views.generic import DetailView, ListView, UpdateView, CreateView
+from django.views.generic import CreateView, DeleteView
 
-from course.models import Course
-from student.models import Student, StudentCourse
-
-
-class StudentDashboardView(LoginRequiredMixin, DetailView):
-    model = Student
-    template_name = 'student/student_dashboard.html'
-    login_url = 'account/login'
-
-    def get_context_data(self, **kwargs):
-        context = super(StudentDashboardView, self).get_context_data(**kwargs)
-        context['student'] = Student.objects.get(student_user=self.request.user)
-        return context
+from course.models import Course, Topic, CourseCategory
+from student.models import Student, StudentCourses
 
 
-class StudentCourseList(LoginRequiredMixin, ListView):
-    model = Course
-    template_name = 'student/course_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(StudentCourseList, self).get_context_data(**kwargs)
-        context['student'] = Student.objects.get(student_user=self.request.user)
-        context['course'] = Course.objects.all()
-        return context
-
-
-class StudentProfileDetailView(LoginRequiredMixin, DetailView):
-    model = Student
-    template_name = 'student/profile.html'
+@login_required
+def student_dashboard(request):
+    if request.user.is_active and request.user.is_authenticated():
+        student = get_object_or_404(Student, student_user=request.user)
+        course = Course.objects.all().filter(studentcourses__student=request.user)
+        context = {
+            'student': student,
+            'course': course
+        }
+        return render(request, 'student/student_dashboard.html', context)
 
 
-class StudentProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = Student
-    fields = ['address', 'state', 'country']
+@login_required
+def all_course_list(request):
+    if request.user.is_active and request.user.is_authenticated():
+        try:
+            course = Course.objects.all()
+        except Course.DoesNotExist:
+            raise Http404
+        student = get_object_or_404(Student, student_user=request.user)
+        context = {'course': course, 'student': student}
+        return render(request, 'student/course_list.html', context)
 
-    def get_success_url(self):
-        return reverse('student_profile', kwargs={
-            'pk': self.object.pk
+
+@login_required
+def students_courses(request):
+    if request.user.is_active and request.user.is_authenticated():
+        student = get_object_or_404(Student, student_user=request.user)
+        course = Course.objects.all().filter(studentcourses__student=request.user)
+        return render(request, 'student/all_courses.html', {
+            'student': student,
+            'course': course
         })
 
 
-class StudentSelectCourseCreateView(LoginRequiredMixin, CreateView):
-    model = StudentCourse
-    template_name = 'student/student_course.html'
-    fields = ['my_course']
+@login_required
+def student_take_course(request, slug):
+    if request.user.is_active and request.user.is_authenticated():
+        student = get_object_or_404(Student, student_user=request.user)
+        topic = Topic.objects.filter()
+        cat = CourseCategory.objects.all()
+        course = Course.objects.get(studentcourses__student__username=request.user)
+        context = {
+            'course': course,
+            'student': student,
+            'topic': topic,
+            'cat':cat
+        }
+        return render(request, 'student/enrolled_course.html', context)
+
+
+class StudentCourseCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'student/student_form.html'
+    model = StudentCourses
+    fields = ['student', 'student_course']
 
     def get_context_data(self, **kwargs):
-        context = super(StudentSelectCourseCreateView, self).get_context_data(**kwargs)
-        context['student_course'] = StudentCourse.objects.all()
-        context['student'] = Student.objects.get(student_user=self.request.user)
+        context = super(StudentCourseCreateView, self).get_context_data(**kwargs)
+        try:
+            context['student'] = Student.objects.get(student_user=self.request.user)
+        except Student.DoesNotExist:
+            raise Http404
         return context
 
     def get_success_url(self):
-        return reverse('my_courses', kwargs={
-            'pk': self.object.pk
-        })
+        return reverse('my_courses', )
 
 
-class StudentRegisteredCoursesView(LoginRequiredMixin, DetailView):
-    model = Student
-    template_name = 'student/all_courses.html'
+class StudentCourseDeleteView(LoginRequiredMixin, DeleteView):
+    model = StudentCourses
+    template_name = ''
 
-    def get_context_data(self, **kwargs):
-        context = super(StudentRegisteredCoursesView, self).get_context_data(**kwargs)
-        context['student'] = Student.objects.get(student_user=self.request.user)
-        context['student_course'] = StudentCourse.objects.all()
-        context['courses'] = Course.objects.filter()
-        return context

@@ -10,7 +10,7 @@
                         <div class="media media-grid media-clearfix-xs">
                             <div class="media-body">
                                 <div class="page-section">
-                                    <h4 class="text-right text-info"> <a class="btn btn-default btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated href="{% url 'course_available' %}"> Back to Library</a> </h4>
+                                    <h4 class="text-right text-info"> <a class="btn btn-default btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated href="{% url 'course_listing' %}"> Back to Library</a> </h4>
                                     <div class="media">
                                         <div class="media-left">
                                             <span><img src="{{ object.image.url }}" height="70" width="70" class="img-rounded"></span>
@@ -127,7 +127,7 @@
                                         <div class="panel-body text-center">
                                             <p>
                                                 <a class="btn btn-success btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated
-                                                   href="{% url 'course_enrol' object.pk object.slug|slugify %}">
+                                                   href="{% url 'register_course'%}">
                                                     Start Course
                                                 </a>
                                             </p>

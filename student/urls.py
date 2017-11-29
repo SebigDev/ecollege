@@ -1,15 +1,12 @@
 from django.conf.urls import url
-
-from student.views import StudentDashboardView, StudentCourseList, StudentProfileDetailView, \
-    StudentProfileUpdateView, StudentSelectCourseCreateView, StudentRegisteredCoursesView
 from .import views
 
 
 urlpatterns = [
-    url(r'^(?P<pk>\d+)/dashboard$', StudentDashboardView.as_view(), name='student_dashboard'),
-    url(r'^course_listing/$', StudentCourseList.as_view(), name='course_available'),
-    url(r'^(?P<pk>\d+)/profile/$', StudentProfileDetailView.as_view(), name='student_profile'),
-    url(r'^(?P<pk>\d+)/profile/edit/$', StudentProfileUpdateView.as_view(), name='profile_edit'),
-    url(r'^(?P<pk>\d+)/profile/select-courses/$', StudentSelectCourseCreateView.as_view(), name='student_course'),
-    url(r'^(?P<pk>\d+)/profile/my-courses/$', StudentRegisteredCoursesView.as_view(), name='my_courses'),
+    url(r'^dashboard$', views.student_dashboard, name='student_dashboard'),
+    url(r'^all-courses-available/$', views.all_course_list, name='all_course_list'),
+    url(r'^my-courses/$', views.students_courses, name='my_courses'),
+    url(r'^start-course/(?P<slug>[\w-]+)/$', views.student_take_course, name='student_take_course'),
+    url(r'^register-courses/$', views.StudentCourseCreateView.as_view(), name='register_course'),
+    url(r'^(?P<pk>\d+)/delete-courses/$', views.StudentCourseDeleteView.as_view(), name='delete_course'),
 ]
