@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^students/', include('student.urls')),
+    url(r'^forums/', include('forums.urls')),
     url(r'^courses/', include('course.urls')),
     url(r'^tutors/', include('tutor.urls')),
     url(r'^contact/$', views.contact, name='contact'),

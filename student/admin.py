@@ -11,12 +11,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 @admin.register(StudentCourses)
 class StudentCoursesAdmin(admin.ModelAdmin):
-    def formfield_for_foreignkey(self, student, request, **kwargs):
-        if student.name == 'student':
-            kwargs['initial'] = request.user.id
-        return super(StudentCoursesAdmin, self).formfield_for_foreignkey(
-            student, request, **kwargs
-        )
+    list_display = ['student']
 
 
 

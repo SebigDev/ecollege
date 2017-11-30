@@ -44,7 +44,7 @@ Students Dashboard
                                         {% for courses in course %}
                                         <li class="list-group-item media v-middle">
                                             <div class="media-body">
-                                                <a href="app-take-course.html" class="text-subhead list-group-link">{{ courses.title }}</a>
+                                                <a href="{% url 'student_take_course' courses.slug %}" class="text-subhead list-group-link">{{ courses.title }}</a>
                                             </div>
                                             <div class="media-right">
                                                 <div class="progress progress-mini width-100 margin-none">

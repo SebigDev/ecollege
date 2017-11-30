@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'course',
     'tutor',
     'student',
+    'forums',
     'accounts',
     'crispy_forms',
     'captcha',

@@ -48,17 +48,19 @@ def students_courses(request):
 @login_required
 def student_take_course(request, slug):
     if request.user.is_active and request.user.is_authenticated():
+        student = Student.objects.get(student_user=request.user)
+        topic = Topic.objects.filter(topics_course__studentcourses__student=request.user).order_by('id')
+        course = Course.objects.get(studentcourses__student_id=request.user)
+        return render(request, 'student/enrolled_course.html', {
+            'topic': topic, 'course': course, 'student': student
+        })
+
+
+@login_required
+def student_profile(request):
+    if request.user.is_active:
         student = get_object_or_404(Student, student_user=request.user)
-        topic = Topic.objects.filter()
-        cat = CourseCategory.objects.all()
-        course = Course.objects.get(studentcourses__student__username=request.user)
-        context = {
-            'course': course,
-            'student': student,
-            'topic': topic,
-            'cat':cat
-        }
-        return render(request, 'student/enrolled_course.html', context)
+        return render(request, 'student/profile.html', {'student': student})
 
 
 class StudentCourseCreateView(LoginRequiredMixin, CreateView):
@@ -77,8 +79,4 @@ class StudentCourseCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('my_courses', )
 
-
-class StudentCourseDeleteView(LoginRequiredMixin, DeleteView):
-    model = StudentCourses
-    template_name = ''
 
