@@ -21,8 +21,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forum <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="app-forum.html">Forum Home</a></li>
-                                <li><a href="app-forum-category.html">Forum Category</a></li>
+                                <li><a href="{% url 'forum_index' %}">Forum Home</a></li>
                             </ul>
                         </li>
                         <li class="dropdown active">
@@ -125,6 +124,7 @@
                     <li class="active"><a href="{% url 'dashboard_list' tutor.pk %}"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
                     <li><a href="{% url 'profile' tutor.tutor_user tutor.pk %}"><i class="fa fa-paper-plane"></i><span>Profile</span></a></li>
                     <li><a href="{% url 'tutor_course' tutor.pk %}"><i class="fa fa-mortar-board"></i><span>My Courses</span></a></li>
+                     <li><a href="{% url 'forum_index' %}"><i class="fa fa-users"></i><span>Forum</span></a></li>
                     <li><a href="#"><i class="fa fa-bar-chart-o"></i><span>Earnings</span></a></li>
                     <li><a href="#"><i class="fa fa-dollar"></i><span>Statement</span></a></li>
                     <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>

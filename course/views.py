@@ -18,7 +18,7 @@ class CourseListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(CourseListView, self).get_context_data(**kwargs)
         context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
-        context['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
+        context['course'] = Course.objects.filter()
         context['course_cat'] = CourseCategory.objects.all()
         return context
 
