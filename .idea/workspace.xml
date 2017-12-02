@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c220021-3868-4e9d-b33a-2a8e4fe62e67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/student/update_profile.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/tokens.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/accounts/base.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/accounts/home.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/474080a5-ef63-479b-95b6-26805a0e14be.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/474080a5-ef63-479b-95b6-26805a0e14be.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/models.py" afterPath="$PROJECT_DIR$/accounts/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/views.py" afterPath="$PROJECT_DIR$/accounts/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ecollege/views.py" afterPath="$PROJECT_DIR$/ecollege/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/student/urls.py" afterPath="$PROJECT_DIR$/student/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/student/views.py" afterPath="$PROJECT_DIR$/student/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/student/profile.html" afterPath="$PROJECT_DIR$/templates/student/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/student/student_dashboard.html" afterPath="$PROJECT_DIR$/templates/student/student_dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/student/student_form.html" afterPath="$PROJECT_DIR$/templates/student/student_form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ecollege/settings.py" afterPath="$PROJECT_DIR$/ecollege/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tutor/views.py" afterPath="$PROJECT_DIR$/tutor/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -111,7 +99,7 @@
         <entry file="file://$PROJECT_DIR$/accounts/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -123,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/ecollege/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,7 +121,7 @@
         <entry file="file://$PROJECT_DIR$/ecollege/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
-              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
                 <element signature="e#1#54#0" expanded="true" />
               </folding>
@@ -151,11 +139,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tutor/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="24">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ecollege/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="123" column="49" lean-forward="true" selection-start-line="123" selection-start-column="49" selection-end-line="123" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -232,7 +230,6 @@
         <option value="$PROJECT_DIR$/forum/views.py" />
         <option value="$PROJECT_DIR$/forum/models.py" />
         <option value="$PROJECT_DIR$/forum/admin.py" />
-        <option value="$PROJECT_DIR$/ecollege/settings.py" />
         <option value="$PROJECT_DIR$/forums/admin.py" />
         <option value="$PROJECT_DIR$/forums/models.py" />
         <option value="$PROJECT_DIR$/forums/urls.py" />
@@ -263,6 +260,7 @@
         <option value="$PROJECT_DIR$/ecollege/views.py" />
         <option value="$PROJECT_DIR$/accounts/views.py" />
         <option value="$PROJECT_DIR$/tutor/views.py" />
+        <option value="$PROJECT_DIR$/ecollege/settings.py" />
       </list>
     </option>
   </component>
@@ -464,7 +462,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41129032" sideWeight="0.49697885" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49471298" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.4954683" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30483872" sideWeight="0.4954683" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12084592" sideWeight="0.5064516" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -833,14 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ecollege/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tutor/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -894,7 +884,7 @@
     <entry file="file://$PROJECT_DIR$/ecollege/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -902,7 +892,7 @@
     <entry file="file://$PROJECT_DIR$/ecollege/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
-          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
             <element signature="e#1#54#0" expanded="true" />
           </folding>
@@ -912,7 +902,7 @@
     <entry file="file://$PROJECT_DIR$/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -930,7 +920,15 @@
     <entry file="file://$PROJECT_DIR$/tutor/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ecollege/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="123" column="49" lean-forward="true" selection-start-line="123" selection-start-column="49" selection-end-line="123" selection-end-column="49" />
           <folding />
         </state>
       </provider>

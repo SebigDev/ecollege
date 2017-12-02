@@ -14,6 +14,7 @@ import os
 import smtplib
 
 from django.core.urlresolvers import reverse_lazy
+from django.db.backends import postgresql
 from django.http import request
 
 LOGIN_REDIRECT_URL = '/login_redirect'
@@ -28,12 +29,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!poq!-(g3wuah%$*gby)c0@hxuu15rjuc8$0&t)tnrc7wzht82'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY', '!poq!-(g3wuah%$*gby)c0@hxuu15rjuc8$0&t)tnrc7wzht82'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
+if DEBUG in ['Off', 'off', 'No', 'no', 'False', 'false', '0', '']:
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'warm-wave-74029.herokuapp.com',
+    'localhost'
+]
 
 
 # Application definition
@@ -105,16 +115,19 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = False
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecollegeDB',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        conn_max_age=600,
+        default='postgresql///' + os.path.join(BASE_DIR, 'postgresql')
+    )
+      #'ENGINE': 'django.db.backends.postgresql',
+       #         'NAME': 'ecollegeDB',
+        #        'USER': 'postgres',
+         #       'PASSWORD': 'postgres',
+          #      'HOST': 'localhost',
+           #     'PORT': '5432',
+
 }
 
 

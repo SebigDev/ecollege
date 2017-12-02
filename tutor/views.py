@@ -5,7 +5,6 @@ from django.forms import Textarea
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
-
 from tutor.models import Tutor
 from course.models import Course, CourseCategory
 from student.models import StudentCourses
