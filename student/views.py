@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.forms import ModelForm
 from django.http import Http404, HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views.generic import CreateView, DeleteView
 
@@ -56,6 +57,12 @@ def student_take_course(request, pk, slug):
         })
 
 
+class StudentForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ['address', 'state', 'country']
+
+
 @login_required
 def student_profile(request):
     if request.user.is_active:
@@ -63,9 +70,15 @@ def student_profile(request):
         return render(request, 'student/profile.html', {'student': student})
 
 
-#def edit_student_profile(request, student_id):
-#    student = get_object_or_404(Student, student_user=student_id)
- #   return render(request, 'student/edit_profile.html', {'student': student})
+@login_required
+def profile_update(request, pk):
+    student = get_object_or_404(Student, pk=pk, student_user=request.user)
+    form = StudentForm(request.POST or None, instance=student)
+    if form.is_valid():
+        form.save()
+        return redirect('student_profile')
+    return render(request, 'student/update_profile.html', {'form': form, 'student': student})
+
 
 class StudentCourseCreateView(LoginRequiredMixin, CreateView):
     template_name = 'student/student_form.html'

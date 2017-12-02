@@ -37,11 +37,11 @@ def login_redirect(request):
 
     if request.user.is_active and request.user.is_authenticated():
         student = get_object_or_404(Student, student_user=request.user)
-        return HttpResponseRedirect(reverse('student_dashboard',))
+        return HttpResponseRedirect(reverse('student_dashboard', student))
 
 
 def success_reg(request):
-    if not request.user.is_active:
+    if request.user.is_active:
         return render(request, 'success_reg.html')
     else:
         return HttpResponseRedirect('/accounts/signup',)

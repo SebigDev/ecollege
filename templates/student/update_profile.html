@@ -1,19 +1,19 @@
 {% extends 'layouts/master.html' %}
 {% load staticfiles %}
 {% block title %}
-Add Course
+{{ student.student_user }}'s Profile
 {% endblock %}
 {% block content %}
 {% include 'layouts/student_navbar.html' %}
-     <div class="st-content-inner padding-none" style="margin-left: 20%">
-{% if request.user.is_active %}
-<h3 class="text-left">Add Your Course</h3>
+{% if request.user.is_authenticated and request.user.is_active %}
+    <div class="st-content-inner padding-none" style="margin-left: 20%">
+<h3 class="text-left">Update Profile</h3>
   <table class="table table-striped">
       <form action="" method="post">
           {% csrf_token %}
           <li class="list-group-item">{{ form.as_table }}</li>
           <tr>
-              <td><button>Save</button></td>
+              <td><button>Update</button></td>
           </tr>
 
       </form>
@@ -21,4 +21,6 @@ Add Course
 {% else %}
 <h4 class="text-info">You cannot access this tutor's edit profile</h4>
 {% endif %}
+
+</div>
 {% endblock %}

@@ -26,9 +26,11 @@ Students Dashboard
                                    You have registered  <strong>{{ course.count }} </strong> Courses so far.
                                 </div>
                                 <div class="media-right media-padding">
-                                    <a class="btn btn-white paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated href="#">
-                Upgrade
-            </a>
+                                    {% if course %}
+                                    <a class="btn btn-white paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated href="{% url 'my_courses' %}">Congratulations</a>
+                                        {% else %}
+                                       <a class="btn btn-white paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated href="{% url 'register_course' %}">Register</a>
+                                        {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -94,7 +96,7 @@ Students Dashboard
                                 <div class="panel panel-default paper-shadow" data-z="0.5">
                                     <div class="panel-heading">
                                         <h4 class="text-headline">Certificates
-                                            <small>{{ course.count }}</small>
+
                                         </h4>
                                     </div>
                                     <div class="panel-body">
