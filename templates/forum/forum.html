@@ -4,10 +4,10 @@
 Forum Home
 {% endblock %}
 {% block content %}
-    {% if request.user.is_active and request.user.is_authenticated %}
-        {% include 'layouts/student_navbar.html' %}
-    {% else %}
+    {% if request.user.is_staff and request.user.is_authenticated %}
         {% include 'layouts/tutor_navbar.html' %}
+    {% else %}
+        {% include 'layouts/student_navbar.html' %}
     {% endif %}
       <div class="st-content" style="margin-left: 20%">
 

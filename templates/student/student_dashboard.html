@@ -44,7 +44,7 @@ Students Dashboard
                                         {% for courses in course %}
                                         <li class="list-group-item media v-middle">
                                             <div class="media-body">
-                                                <a href="{% url 'student_take_course' courses.slug|slugify %}" class="text-subhead list-group-link">{{ courses.title }}</a>
+                                                <a href="{% url 'student_take_course' courses.pk courses.slug|slugify %}" class="text-subhead list-group-link">{{ courses.title }}</a>
                                             </div>
                                             <div class="media-right">
                                                 <div class="progress progress-mini width-100 margin-none">
@@ -68,6 +68,9 @@ Students Dashboard
                                     <div class="panel-body">
                                         <h4 class="text-headline margin-none">Rewards</h4>
                                         <p class="text-subhead text-light">Your latest achievements</p>
+                                        {% if not course %}
+                                        <p>You have not finished any course yet!</p>
+                                        {% else %}
                                         <div class="icon-block half img-circle bg-purple-300">
                                             <i class="fa fa-star text-white"></i>
                                         </div>
@@ -81,17 +84,23 @@ Students Dashboard
                                             <i class="fa fa-code-fork text-white"></i>
                                         </div>
                                         <div class="icon-block half img-circle bg-red-300">
+
                                             <i class="fa fa-diamond text-white"></i>
                                         </div>
+                                             {% endif %}
                                     </div>
+
                                 </div>
                                 <div class="panel panel-default paper-shadow" data-z="0.5">
                                     <div class="panel-heading">
                                         <h4 class="text-headline">Certificates
-                                            <small>(4)</small>
+                                            <small>{{ course.count }}</small>
                                         </h4>
                                     </div>
                                     <div class="panel-body">
+                                         {% if not course %}
+                                        <p>No Certificates Yet!</p>
+                                        {% else %}
                                         <a class="btn btn-default text-grey-400 btn-lg btn-circle paper-shadow relative" data-hover-z="0.5" data-animated data-toggle="tooltip" data-title="Name of Certificate">
                                             <i class="fa fa-file-text"></i>
                                         </a>
@@ -104,7 +113,9 @@ Students Dashboard
                                         <a class="btn btn-default text-grey-400 btn-lg btn-circle paper-shadow relative" data-hover-z="0.5" data-animated data-toggle="tooltip" data-title="Name of Certificate">
                                             <i class="fa fa-file-text"></i>
                                         </a>
+                                             {% endif %}
                                     </div>
+
                                 </div>
                             </div>
                             <div class="item col-xs-12 col-lg-6">

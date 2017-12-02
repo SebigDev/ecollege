@@ -4,7 +4,6 @@
 Student Courses
 {% endblock %}
 {% block content %}
-{% if not request.user.is_anonymous %}
 {% include 'layouts/student_navbar.html' %}
       <div class="st-content" style="margin-left: 20%">
         <div class="st-content-inner padding-none">
@@ -14,6 +13,7 @@ Student Courses
                         <div class="page-section">
                             <h1 class="text-display-1">My Courses</h1>
                         </div>
+                    {% if course %}
                         <div class="row" data-toggle="isotope">
                             {% for list in course %}
                             <div class="item col-xs-12 col-sm-6 col-lg-4">
@@ -49,14 +49,14 @@ Student Courses
                                     <hr class="margin-none" />
                                     <div class="panel-body">
                                         <a class="btn btn-primary btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated
-                                           href="{% url 'student_take_course' list.slug|slugify %}"><i class="fa fa-fw fa-arrow-left text-center"></i> Start Course</a>
+                                           href="{% url 'student_take_course' list.pk list.slug|slugify %}"><i class="fa fa-fw fa-arrow-left text-center"></i> Start Course</a>
                                     </div>
                                 </div>
                             </div>
                             {% endfor %}
                             {% else %}
                             <h4 class="text-danger text-center">You have not selected any course, Please select to start!</h4>
-
+                                {% endif %}
                         </div>
 
                         </div>
@@ -69,6 +69,6 @@ Student Courses
                         </ul>
                     </div>
                 </div>
+      </div>
 
-          {% endif %}
 {% endblock %}

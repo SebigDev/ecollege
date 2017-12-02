@@ -2,12 +2,13 @@ from builtins import super
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import Textarea
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
 
 from tutor.models import Tutor
 from course.models import Course, CourseCategory
-from student.models import Student
+from student.models import StudentCourses
 
 
 class TutorDashboardView(LoginRequiredMixin, DetailView):
@@ -20,9 +21,9 @@ class TutorDashboardView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorDashboardView, self).get_context_data(**kwargs)
-        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         context['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
-        context['student'] = Student.objects.filter()
+        context['student'] = StudentCourses.objects.filter(student__tutor__course=True)
         return context
 
 
@@ -35,7 +36,7 @@ class TutorCourseListView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         t = super(TutorCourseListView, self).get_context_data(**kwargs)
-        t['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        t['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         t['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
         return t
 
@@ -54,7 +55,7 @@ class TutorCourseCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         return context
 
 
@@ -72,7 +73,7 @@ class TutorCourseUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorCourseUpdateView, self).get_context_data(**kwargs)
-        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         return context
 
     def form_valid(self, form):
@@ -91,7 +92,7 @@ class TutorCourseDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorCourseDeleteView, self).get_context_data(**kwargs)
-        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         return context
 
 
@@ -102,7 +103,7 @@ class TutorsListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         tuts = super(TutorsListView, self).get_context_data(**kwargs)
         tuts['our_list'] = Tutor.objects.all()
-        tuts['log_tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        tuts['log_tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         return tuts
 
 
@@ -124,7 +125,7 @@ class TutorProfileDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorProfileDetailView, self).get_context_data(**kwargs)
-        context['tutor'] = Tutor.objects.get(tutor_user=self.request.user)
+        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         return context
 
 

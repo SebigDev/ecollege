@@ -4,10 +4,10 @@
 Forum Thread
 {% endblock %}
 {% block content %}
- {% if request.user.is_active and request.user.is_authenticated %}
-        {% include 'layouts/student_navbar.html' %}
-    {% elif request.user.is_staff and request.user.is_authenticated %}
+  {% if request.user.is_staff and request.user.is_authenticated %}
         {% include 'layouts/tutor_navbar.html' %}
+    {% else %}
+        {% include 'layouts/student_navbar.html' %}
     {% endif %}
       <div class="st-content" style="margin-left: 20%">
 
@@ -47,12 +47,12 @@ Forum Thread
                             </div>
                         </div>
                     {% for list in forum_thread_list %}
-                        {% if user %}
+                        {% if request.user.is_authenticated %}
                         <div class="media s-container">
                             <div class="media-left">
                                 <div class="width-70 text-center">
                                     <a href="#">
-                                        {% if user.is_staff and user.is_authenticated %}
+                                        {% if request.user.is_staff and request.user.is_authenticated %}
                                         <img src="{{ tutor.photo.url}}" alt="people" class="img-circle width-20" />
                                         {% else %}
                                         <img src="{{ student.picture.url }}" alt="people" class="img-circle width-20"/>
@@ -63,7 +63,7 @@ Forum Thread
                             <div class="media-body">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <div class="text-subhead-2">{{ users.username }}<span class="text-caption text-light">- {{ list.created }}</span></div>
+                                        <div class="text-subhead-2">{{ user.username }}<span class="text-caption text-light">- {{ list.created }}</span></div>
                                         <p>{% lorem %}</p>
                                     </div>
                                 </div>
@@ -88,6 +88,8 @@ Forum Thread
                             </div>
                         </div>
                             {% endif %}
+
+
                     {% endfor %}
                         <div class="text-right">
                             <ul class="pagination margin-top-none">

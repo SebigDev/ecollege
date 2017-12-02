@@ -46,11 +46,11 @@ def students_courses(request):
 
 
 @login_required
-def student_take_course(request, slug):
+def student_take_course(request, pk, slug):
     if request.user.is_active and request.user.is_authenticated():
         student = Student.objects.get(student_user=request.user)
-        topic = Topic.objects.filter(topics_course__studentcourses__student=request.user).order_by('id')
-        course = Course.objects.get(studentcourses__student_id=request.user)
+        topic = Topic.objects.filter(topics_course=pk).order_by('id')
+        course = get_object_or_404(Course, pk=pk)
         return render(request, 'student/enrolled_course.html', {
             'topic': topic, 'course': course, 'student': student
         })
@@ -62,6 +62,10 @@ def student_profile(request):
         student = get_object_or_404(Student, student_user=request.user)
         return render(request, 'student/profile.html', {'student': student})
 
+
+#def edit_student_profile(request, student_id):
+#    student = get_object_or_404(Student, student_user=student_id)
+ #   return render(request, 'student/edit_profile.html', {'student': student})
 
 class StudentCourseCreateView(LoginRequiredMixin, CreateView):
     template_name = 'student/student_form.html'

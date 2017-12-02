@@ -11,6 +11,7 @@ Start {{ course.title }}
                     <div class="container-fluid">
                  <div class="page-section">
                       <h4 class="text-right text-info"> <a class="btn btn-default btn-lg paper-shadow relative" data-z="1" data-hover-z="2" data-animated href="{% url 'my_courses' %}"> Back to Library</a> </h4>
+                     {% if course %}
                             <div class="media media-grid v-middle">
                                 <div class="media-left">
                                     <span class="icon-block half bg-blue-300 text-white">{{ course.pk }}</span>
@@ -26,6 +27,7 @@ Start {{ course.title }}
                             <h3 class="text-left text-blue-300"><i class="fa fa-graduation-cap"></i>&nbsp;
                                 Topics in {{ course.title }}</h3>
                         </div><hr />
+                    {% endif %}
                     {% if not topic %}
                         <p class="text-left text-info">No Available Topic(s) for <i class="text-danger">
                             {{ course.title }}</i>&nbsp; yet...</p>
