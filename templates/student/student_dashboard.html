@@ -134,8 +134,10 @@ Students Dashboard
                                                     <a href="app-take-quiz.html" class="list-group-link">Title of quiz goes here?</a>
                                                 </h4>
                                                 <div class="caption">
+                                                    {% for courses in course %}
                                                     <span class="text-light">Course:</span>
-                                                    <a href="app-take-course.html">Basics of HTML</a>
+                                                    <a href="{% url 'course_detail' courses.pk courses.slug|slugify %}">{{ courses.title }}</a>
+                                                        {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="media-right text-center">

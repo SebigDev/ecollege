@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from student.models import Student
@@ -33,7 +34,7 @@ class CourseDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
-        context['student'] = Student.objects.get(student_user=self.request.user)
+        context['student'] = get_object_or_404(Student, student_user=self.request.user)
         context['course'] = Course.objects.filter()
         context['student'] = Student.objects.filter()
         return context
@@ -50,7 +51,7 @@ class CourseEnrolDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(CourseEnrolDetailView, self).get_context_data(**kwargs)
         context['topic'] = Topic.objects.filter().order_by('id')
-        context['student'] = Student.objects.get(student_user=self.request.user)
+        context['student'] = get_object_or_404(Student, student_user=self.request.user)
         context['course_cat'] = CourseCategory.objects.filter(course_category=self.object)
         return context
 

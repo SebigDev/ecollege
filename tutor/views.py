@@ -45,7 +45,7 @@ class TutorCourseCreateView(LoginRequiredMixin, CreateView):
     fields = ['category', 'title', 'slug', 'image', 'blob', 'description', 'tutor']
     template_name = 'tutor/create.html'
     redirect_field_name = 'redirect_to'
-    login_url = 'account/login'
+    login_url = '/accounts/login'
 
     def get_success_url(self):
         return reverse('tutor_course', kwargs={
@@ -53,9 +53,12 @@ class TutorCourseCreateView(LoginRequiredMixin, CreateView):
         })
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(TutorCourseCreateView, self).get_context_data(**kwargs)
         context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         return context
+
+    def form_valid(self, form):
+        return super(TutorCourseCreateView, self).form_valid(form)
 
 
 class TutorCourseUpdateView(LoginRequiredMixin, UpdateView):
