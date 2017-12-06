@@ -124,6 +124,7 @@
                     <li><a href="{% url 'profile' tutor.tutor_user tutor.pk %}"><i class="fa fa-paper-plane"></i><span>Profile</span></a></li>
                     <li><a href="{% url 'tutor_course' tutor.pk %}"><i class="fa fa-mortar-board"></i><span>My Courses</span></a></li>
                      <li><a href="{% url 'forum_index' %}"><i class="fa fa-users"></i><span>Forum</span></a></li>
+                    <li><a href="{% url 'tutor_student_list' tutor.pk %}"><i class="fa fa-users"></i><span>Students List</span></a></li>
                     <li><a href="#"><i class="fa fa-bar-chart-o"></i><span>Earnings</span></a></li>
                     <li><a href="#"><i class="fa fa-dollar"></i><span>Statement</span></a></li>
                     <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>

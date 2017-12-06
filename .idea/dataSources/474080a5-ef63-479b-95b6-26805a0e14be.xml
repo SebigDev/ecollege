@@ -18,8 +18,8 @@
     </database>
     <schema id="6" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-12-02.13:53:29.553</IntrospectionTimestamp>
-      <IntrospectionStateNumber>3037</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-12-06.13:38:02.014</IntrospectionTimestamp>
+      <IntrospectionStateNumber>3435</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -38,84 +38,84 @@
     <schema id="11" parent="2" name="information_schema">
       <ObjectId>12648</ObjectId>
     </schema>
-    <sequence id="12" parent="6" name="forums_forumthread_id_seq">
-      <ObjectId>20606</ObjectId>
-      <StateNumber>3031</StateNumber>
-      <BelongsToColumn>1</BelongsToColumn>
-    </sequence>
-    <sequence id="13" parent="6" name="auth_group_id_seq">
+    <sequence id="12" parent="6" name="auth_group_id_seq">
       <ObjectId>18846</ObjectId>
       <StateNumber>1577</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="14" parent="6" name="auth_group_permissions_id_seq">
+    <sequence id="13" parent="6" name="auth_group_permissions_id_seq">
       <ObjectId>18856</ObjectId>
       <StateNumber>1577</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="15" parent="6" name="auth_permission_id_seq">
+    <sequence id="14" parent="6" name="auth_permission_id_seq">
       <ObjectId>18838</ObjectId>
       <StateNumber>1577</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="16" parent="6" name="auth_user_groups_id_seq">
+    <sequence id="15" parent="6" name="auth_user_groups_id_seq">
       <ObjectId>18874</ObjectId>
       <StateNumber>1577</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="17" parent="6" name="auth_user_id_seq">
+    <sequence id="16" parent="6" name="auth_user_id_seq">
       <ObjectId>18864</ObjectId>
       <StateNumber>1577</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="18" parent="6" name="auth_user_user_permissions_id_seq">
+    <sequence id="17" parent="6" name="auth_user_user_permissions_id_seq">
       <ObjectId>18882</ObjectId>
       <StateNumber>1577</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="19" parent="6" name="course_course_category_id_seq">
+    <sequence id="18" parent="6" name="course_course_category_id_seq">
       <ObjectId>19001</ObjectId>
       <StateNumber>1608</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="20" parent="6" name="course_course_id_seq">
+    <sequence id="19" parent="6" name="course_course_id_seq">
       <ObjectId>18982</ObjectId>
       <StateNumber>1608</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="21" parent="6" name="course_course_tutor_id_seq">
+    <sequence id="20" parent="6" name="course_course_tutor_id_seq">
       <ObjectId>19035</ObjectId>
       <StateNumber>1622</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="22" parent="6" name="course_coursecategory_id_seq">
+    <sequence id="21" parent="6" name="course_coursecategory_id_seq">
       <ObjectId>18993</ObjectId>
       <StateNumber>1608</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="23" parent="6" name="course_topic_id_seq">
+    <sequence id="22" parent="6" name="course_topic_id_seq">
       <ObjectId>19155</ObjectId>
       <StateNumber>1704</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="24" parent="6" name="django_admin_log_id_seq">
+    <sequence id="23" parent="6" name="django_admin_log_id_seq">
       <ObjectId>18942</ObjectId>
       <StateNumber>1579</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="25" parent="6" name="django_content_type_id_seq">
+    <sequence id="24" parent="6" name="django_content_type_id_seq">
       <ObjectId>18828</ObjectId>
       <StateNumber>1575</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="26" parent="6" name="django_migrations_id_seq">
+    <sequence id="25" parent="6" name="django_migrations_id_seq">
       <ObjectId>18817</ObjectId>
       <StateNumber>1574</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="27" parent="6" name="forums_forum_id_seq">
+    <sequence id="26" parent="6" name="forums_forum_id_seq">
       <ObjectId>20595</ObjectId>
       <StateNumber>3026</StateNumber>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="27" parent="6" name="forums_forumthread_id_seq">
+      <ObjectId>20606</ObjectId>
+      <StateNumber>3031</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
     <sequence id="28" parent="6" name="student_student_id_seq">
@@ -152,7 +152,7 @@
     </table>
     <table id="35" parent="6" name="auth_user">
       <ObjectId>18866</ObjectId>
-      <StateNumber>2991</StateNumber>
+      <StateNumber>3435</StateNumber>
     </table>
     <table id="36" parent="6" name="auth_user_groups">
       <ObjectId>18876</ObjectId>
@@ -164,7 +164,7 @@
     </table>
     <table id="38" parent="6" name="course_course">
       <ObjectId>18984</ObjectId>
-      <StateNumber>2913</StateNumber>
+      <StateNumber>3395</StateNumber>
     </table>
     <table id="39" parent="6" name="course_course_category">
       <ObjectId>19003</ObjectId>
@@ -208,19 +208,19 @@
     </table>
     <table id="49" parent="6" name="student_student">
       <ObjectId>19269</ObjectId>
-      <StateNumber>2513</StateNumber>
+      <StateNumber>3320</StateNumber>
     </table>
     <table id="50" parent="6" name="student_studentcourses">
       <ObjectId>20477</ObjectId>
-      <StateNumber>2926</StateNumber>
+      <StateNumber>3435</StateNumber>
     </table>
     <table id="51" parent="6" name="student_studentcourses_student_course">
       <ObjectId>20485</ObjectId>
-      <StateNumber>2913</StateNumber>
+      <StateNumber>3395</StateNumber>
     </table>
     <table id="52" parent="6" name="tutor_tutor">
       <ObjectId>19025</ObjectId>
-      <StateNumber>2039</StateNumber>
+      <StateNumber>3322</StateNumber>
     </table>
     <column id="53" parent="32" name="id">
       <Position>1</Position>
@@ -1256,38 +1256,32 @@ model</ColNames>
     <column id="218" parent="49" name="age">
       <Position>4</Position>
       <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1810</StateNumber>
+      <StateNumber>3320</StateNumber>
     </column>
     <column id="219" parent="49" name="gender">
       <Position>5</Position>
       <DataType>varchar(20)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1810</StateNumber>
+      <StateNumber>3320</StateNumber>
     </column>
     <column id="220" parent="49" name="address">
       <Position>6</Position>
       <DataType>varchar(500)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1810</StateNumber>
+      <StateNumber>3320</StateNumber>
     </column>
     <column id="221" parent="49" name="state">
       <Position>7</Position>
       <DataType>varchar(200)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1810</StateNumber>
+      <StateNumber>3320</StateNumber>
     </column>
     <column id="222" parent="49" name="country">
       <Position>8</Position>
       <DataType>varchar(200)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1810</StateNumber>
+      <StateNumber>3320</StateNumber>
     </column>
     <column id="223" parent="49" name="student_user_id">
       <Position>9</Position>
       <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1810</StateNumber>
+      <StateNumber>3320</StateNumber>
     </column>
     <column id="224" parent="49" name="role">
       <Position>10</Position>
@@ -1297,8 +1291,7 @@ model</ColNames>
     <column id="225" parent="49" name="picture">
       <Position>11</Position>
       <DataType>varchar(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>2461</StateNumber>
+      <StateNumber>3320</StateNumber>
     </column>
     <index id="226" parent="49" name="student_student_pkey">
       <ObjectId>19277</ObjectId>
@@ -1322,7 +1315,7 @@ model</ColNames>
       <UnderlyingIndexName>student_student_student_user_id_key</UnderlyingIndexName>
     </key>
     <foreign-key id="230" parent="49" name="student_student_student_user_id_00c8fa9b_fk_auth_user_id">
-      <ObjectId>19289</ObjectId>
+      <ObjectId>20630</ObjectId>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <ColNames>student_user_id</ColNames>
@@ -1351,10 +1344,9 @@ model</ColNames>
       <DefaultExpression>nextval(&apos;student_studentcourses_id_seq&apos;::regclass)</DefaultExpression>
     </column>
     <column id="234" parent="50" name="student_id">
-      <Position>2</Position>
+      <Position>3</Position>
       <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>2920</StateNumber>
+      <StateNumber>3405</StateNumber>
     </column>
     <index id="235" parent="50" name="student_studentcourses_pkey">
       <ObjectId>20481</ObjectId>
@@ -1362,7 +1354,7 @@ model</ColNames>
       <Unique>1</Unique>
     </index>
     <index id="236" parent="50" name="student_studentcourses_student_id_f5953880">
-      <ObjectId>20496</ObjectId>
+      <ObjectId>20674</ObjectId>
       <ColNames>student_id</ColNames>
     </index>
     <key id="237" parent="50" name="student_studentcourses_pkey">
@@ -1372,7 +1364,7 @@ model</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="238" parent="50" name="student_studentcourses_student_id_f5953880_fk_auth_user_id">
-      <ObjectId>20517</ObjectId>
+      <ObjectId>20686</ObjectId>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <ColNames>student_id</ColNames>
@@ -1434,7 +1426,7 @@ course_id</ColNames>
       <UnderlyingIndexName>student_studentcourses_s_studentcourses_id_course_e78efca3_uniq</UnderlyingIndexName>
     </key>
     <foreign-key id="248" parent="51" name="student_studentcours_studentcourses_id_64d9074d_fk_student_s">
-      <ObjectId>20497</ObjectId>
+      <ObjectId>20669</ObjectId>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <ColNames>studentcourses_id</ColNames>
@@ -1445,7 +1437,7 @@ course_id</ColNames>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="249" parent="51" name="student_studentcours_course_id_29a9afd4_fk_course_co">
-      <ObjectId>20502</ObjectId>
+      <ObjectId>20664</ObjectId>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <ColNames>course_id</ColNames>
@@ -1471,91 +1463,71 @@ course_id</ColNames>
     <column id="252" parent="52" name="phone">
       <Position>5</Position>
       <DataType>varchar(200)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1860</StateNumber>
+      <StateNumber>3315</StateNumber>
     </column>
     <column id="253" parent="52" name="website">
       <Position>7</Position>
       <DataType>varchar(200)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1610</StateNumber>
+      <StateNumber>3315</StateNumber>
     </column>
     <column id="254" parent="52" name="address">
       <Position>8</Position>
       <DataType>varchar(500)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1610</StateNumber>
+      <StateNumber>3315</StateNumber>
     </column>
     <column id="255" parent="52" name="state">
       <Position>9</Position>
       <DataType>varchar(200)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1610</StateNumber>
+      <StateNumber>3315</StateNumber>
     </column>
     <column id="256" parent="52" name="country">
       <Position>10</Position>
       <DataType>varchar(200)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1610</StateNumber>
+      <StateNumber>3315</StateNumber>
     </column>
     <column id="257" parent="52" name="designation">
       <Position>11</Position>
       <DataType>varchar(200)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1686</StateNumber>
+      <StateNumber>3315</StateNumber>
     </column>
     <column id="258" parent="52" name="bio">
       <Position>13</Position>
       <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1812</StateNumber>
+      <StateNumber>3315</StateNumber>
     </column>
     <column id="259" parent="52" name="tutor_user_id">
       <Position>14</Position>
       <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1812</StateNumber>
+      <StateNumber>3317</StateNumber>
     </column>
-    <column id="260" parent="52" name="activation_key">
-      <Position>15</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1860</StateNumber>
-    </column>
-    <column id="261" parent="52" name="email_validated">
-      <Position>16</Position>
-      <DataType>boolean|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1860</StateNumber>
-    </column>
-    <column id="262" parent="52" name="role">
+    <column id="260" parent="52" name="role">
       <Position>17</Position>
       <DataType>smallint|0</DataType>
       <StateNumber>2039</StateNumber>
     </column>
-    <index id="263" parent="52" name="tutor_tutor_pkey">
+    <index id="261" parent="52" name="tutor_tutor_pkey">
       <ObjectId>19032</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="264" parent="52" name="tutor_tutor_tutor_user_id_key">
+    <index id="262" parent="52" name="tutor_tutor_tutor_user_id_key">
       <ObjectId>19325</ObjectId>
       <ColNames>tutor_user_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="265" parent="52" name="tutor_tutor_pkey">
+    <key id="263" parent="52" name="tutor_tutor_pkey">
       <ObjectId>19033</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>tutor_tutor_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="266" parent="52" name="tutor_tutor_tutor_user_id_key">
+    <key id="264" parent="52" name="tutor_tutor_tutor_user_id_key">
       <ObjectId>19326</ObjectId>
       <ColNames>tutor_user_id</ColNames>
       <UnderlyingIndexName>tutor_tutor_tutor_user_id_key</UnderlyingIndexName>
     </key>
-    <foreign-key id="267" parent="52" name="tutor_tutor_tutor_user_id_9455a64e_fk_auth_user_id">
-      <ObjectId>19349</ObjectId>
+    <foreign-key id="265" parent="52" name="tutor_tutor_tutor_user_id_9455a64e_fk_auth_user_id">
+      <ObjectId>20635</ObjectId>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <ColNames>tutor_user_id</ColNames>
@@ -1565,7 +1537,7 @@ course_id</ColNames>
       <RefKeyName>auth_user_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <check id="268" parent="52" name="tutor_tutor_role_check">
+    <check id="266" parent="52" name="tutor_tutor_role_check">
       <ObjectId>19455</ObjectId>
       <ColNames>role</ColNames>
       <Predicate>role &gt;= 0</Predicate>

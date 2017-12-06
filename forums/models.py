@@ -13,7 +13,7 @@ class Forum(models.Model):
 
 
 class ForumThread(models.Model):
-    forum_post = models.ForeignKey(Forum)
+    forum_post = models.ForeignKey(Forum, on_delete=models.CASCADE)
     forum_content = models.TextField()
     created = models.TimeField(auto_now_add=True)
 

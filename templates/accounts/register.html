@@ -3,20 +3,14 @@
 {% block title %}
 Register
 {% endblock %}
-  <style type="text/css">
-    body{
-            background-image: url('{{ STATIC_URL }}images/Desert.jpg');
-            background-repeat:no-repeat;
-            background-size:100%;
-    }
-    </style>
 {% block content %}
  <body class="login">
-    <div id="content" style="margin-left: 20%">
+    <div id="content" style="margin-left: 20%;">
         <div class="container-fluid">
             <div class="lock-container">
-               <table class="table table-striped">
-                   <h2>Sign up</h2>
+                <div class="panel panel-default text-center paper-shadow" data-z="0.5">
+                    <h1 class="text-display-1">Create account</h1>
+                    <div class="panel-body">
                       <form method="post">
                         {% csrf_token %}
                         {% for field in form %}
@@ -28,10 +22,13 @@ Register
                             {% endfor %}
                           </p>
                         {% endfor %}
-                        <button type="submit">Sign up</button>
+                        <button type="submit" class="btn btn-primary">Register</button>
                       </form>
                </table>
             </div>
         </div>
+            </div>
+        </div>
+    </div>
    </body>
 {% endblock %}

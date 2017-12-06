@@ -1,11 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ObjectDoesNotExist
 from django.forms import ModelForm
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView
 
 from course.models import Course, Topic, CourseCategory
 from student.models import Student, StudentCourses
@@ -65,7 +64,7 @@ class StudentForm(ModelForm):
 
 @login_required
 def student_profile(request):
-    if request.user.is_active:
+    if request.user.is_active and request.user.is_authenticated():
         student = get_object_or_404(Student, student_user=request.user)
         return render(request, 'student/profile.html', {'student': student})
 
@@ -80,6 +79,12 @@ def profile_update(request, pk):
     return render(request, 'student/update_profile.html', {'form': form, 'student': student})
 
 
+class StudentCourseRegForm(ModelForm):
+    class Meta:
+        model = StudentCourses
+        fields = '__all__'
+
+
 class StudentCourseCreateView(LoginRequiredMixin, CreateView):
     template_name = 'student/student_form.html'
     model = StudentCourses
@@ -87,10 +92,8 @@ class StudentCourseCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(StudentCourseCreateView, self).get_context_data(**kwargs)
-        try:
-            context['student'] = Student.objects.get(student_user=self.request.user)
-        except Student.DoesNotExist:
-            raise Http404
+        context['student'] = get_object_or_404(Student, student_user=self.request.user,)
+        context['student_course'] = StudentCourses.objects.filter(pk=self.object)
         return context
 
     def get_success_url(self):

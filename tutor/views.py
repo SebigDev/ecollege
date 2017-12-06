@@ -1,136 +1,104 @@
-from builtins import super
-
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.forms import Textarea
-from django.shortcuts import get_object_or_404
-from django.urls import reverse
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
+from django.contrib.auth.decorators import login_required
+from django.forms import ModelForm
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render, redirect, get_list_or_404
 from tutor.models import Tutor
-from course.models import Course, CourseCategory
-from student.models import StudentCourses
+from course.models import Course
+from student.models import StudentCourses, Student
 
 
-class TutorDashboardView(LoginRequiredMixin, DetailView):
-    model = Tutor
-    context_object_name = 'dashboard_list'
-    template_name = 'tutor/tutor_board.html'
-    login_url = '/account/login'
-    redirect_field_name = 'redirect_to'
-    raise_exception = True
-
-    def get_context_data(self, **kwargs):
-        context = super(TutorDashboardView, self).get_context_data(**kwargs)
-        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
-        context['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
-        context['student'] = StudentCourses.objects.filter(student__tutor__course=True)
-        return context
+class TutorCourseForm(ModelForm):
+    class Meta:
+        model = Course
+        fields = ['category', 'title', 'slug', 'image', 'blob', 'description', 'tutor']
 
 
-class TutorCourseListView(LoginRequiredMixin, DetailView):
-    model = CourseCategory
-    template_name = 'tutor/tutor_course.html'
-    login_url = '/accounts/login'
-    redirect_field_name = 'redirect_to'
-    raise_exception = True
-
-    def get_context_data(self, **kwargs):
-        t = super(TutorCourseListView, self).get_context_data(**kwargs)
-        t['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
-        t['course'] = Course.objects.filter(tutor__tutor_user=self.request.user)
-        return t
+@login_required
+def tutor_dashboard(request, pk):
+    tutor = get_object_or_404(Tutor, tutor_user=request.user)
+    course = Course.objects.filter(tutor__tutor_user=request.user)
+    student = StudentCourses.objects.filter(student__tutor__course=True)
+    context = {'tutor': tutor, 'course': course, 'student': student}
+    return render(request, 'tutor/tutor_board.html', context)
 
 
-class TutorCourseCreateView(LoginRequiredMixin, CreateView):
-    model = Course
-    fields = ['category', 'title', 'slug', 'image', 'blob', 'description', 'tutor']
-    template_name = 'tutor/create.html'
-    redirect_field_name = 'redirect_to'
-    login_url = '/accounts/login'
-
-    def get_success_url(self):
-        return reverse('tutor_course', kwargs={
-            'pk': self.object.pk,
-        })
-
-    def get_context_data(self, **kwargs):
-        context = super(TutorCourseCreateView, self).get_context_data(**kwargs)
-        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
-        return context
-
-    def form_valid(self, form):
-        return super(TutorCourseCreateView, self).form_valid(form)
+@login_required
+def tutor_course_list(request, pk):
+    tutor = get_object_or_404(Tutor, tutor_user=request.user)
+    course = Course.objects.filter(tutor__tutor_user=request.user)
+    context = {'tutor': tutor, 'course': course}
+    return render(request, 'tutor/tutor_course.html', context)
 
 
-class TutorCourseUpdateView(LoginRequiredMixin, UpdateView):
-    model = Course
-    fields = ['category', 'title', 'slug', 'image', 'blob', 'description']
-    template_name = 'tutor/edit.html'
-    login_url = '/accounts/login'
-    redirect_field_name = 'redirect_to'
-
-    def get_success_url(self):
-        return reverse('tutor_course', kwargs={
-            'pk': self.object.pk,
-        })
-
-    def get_context_data(self, **kwargs):
-        context = super(TutorCourseUpdateView, self).get_context_data(**kwargs)
-        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
-        return context
-
-    def form_valid(self, form):
-        return super(TutorCourseUpdateView, self).form_valid(form)
+@login_required
+def tutor_create_course(request):
+    tutor = get_object_or_404(Tutor, tutor_user=request.user)
+    form = TutorCourseForm(request.POST or None, request.FILES)
+    if form.is_valid():
+        form.save()
+        return redirect('tutor_course',)
+    return render(request, 'tutor/create.html', {'form': form, 'tutor': tutor})
 
 
-class TutorCourseDeleteView(LoginRequiredMixin, DeleteView):
-    model = Course
-    login_url = '/accounts/login'
-    redirect_field_name = 'redirect_to'
-
-    def get_success_url(self):
-        return reverse('tutor_course', kwargs={
-            'pk': self.object.pk,
-        })
-
-    def get_context_data(self, **kwargs):
-        context = super(TutorCourseDeleteView, self).get_context_data(**kwargs)
-        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
-        return context
+@login_required
+def tutor_update_course(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    tutor = get_object_or_404(Tutor, tutor_user=request.user)
+    form = TutorCourseForm(request.POST or None, request.FILES, instance=course,)
+    if form.is_valid():
+        form.save()
+        return redirect('tutor_course', pk)
+    return render(request, 'tutor/edit.html', {'form': form, 'course': course, 'tutor': tutor})
 
 
-class TutorsListView(LoginRequiredMixin, ListView):
-    model = Tutor
-    template_name = 'tutor/tutor_list.html'
-
-    def get_context_data(self, **kwargs):
-        tuts = super(TutorsListView, self).get_context_data(**kwargs)
-        tuts['our_list'] = Tutor.objects.all()
-        tuts['log_tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
-        return tuts
-
-
-class TutorProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = Tutor
-    fields = ['phone', 'website', 'bio', 'address', 'state', 'country']
-
-    def get_success_url(self):
-        return reverse('profile', kwargs={
-            'pk': self.object.pk,
-            'tutor_user': self.object.tutor_user
-        })
+@login_required
+def tutor_delete_course(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    tutor = get_object_or_404(Tutor, tutor_user=request.user)
+    form = TutorCourseForm(request.POST or None, instance=course)
+    if request.method == 'POST':
+        course.delete()
+        return redirect('tutor_course', pk)
+    return render(request, 'tutor/tutor_confirm_delete.html', {'form': form, 'course': course, 'tutor': tutor})
 
 
-class TutorProfileDetailView(LoginRequiredMixin, DetailView):
-    model = Tutor
-    context_object_name = 'profile'
-    template_name = 'tutor/profile.html'
+@login_required
+def tutor_list(request):
+    our_list = Tutor.objects.all()
+    log_tutor = get_object_or_404(Tutor, tutor_user=request.user)
+    context = {
+        'our_list': our_list,
+        'log_tutor': log_tutor
+    }
+    return render(request, 'tutor/tutor_list.html', context)
 
-    def get_context_data(self, **kwargs):
-        context = super(TutorProfileDetailView, self).get_context_data(**kwargs)
-        context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
-        return context
+
+class TutorDataForm(ModelForm):
+    class Meta:
+        model = Tutor
+        fields = ['phone', 'website', 'bio', 'address', 'state', 'country']
 
 
+def tutor_profile(request, pk, tutor_user):
+    if request.user.is_authenticated:
+        tutor = get_object_or_404(Tutor, tutor_user=request.user)
+        return render(request, 'tutor/profile.html', {'tutor': tutor})
+
+
+def tutor_update(request, pk, tutor_user):
+    tutor = get_object_or_404(Tutor, pk=pk, tutor_user=request.user)
+    form = TutorDataForm(request.POST or None, instance=tutor)
+    if form.is_valid():
+        form.save()
+        return redirect('profile', tutor_user, pk)
+    return render(request, 'tutor/edit.html', {'form': form, 'tutor': tutor})
+
+
+@login_required
+def tutor_student_list(request, pk):
+    tutor = get_object_or_404(Tutor, pk=pk, tutor_user=request.user)
+    list_student = Student.objects.all().order_by('id')
+    return render(request, 'tutor/student_list.html', {'list_student': list_student, 'tutor': tutor})
 
 
 

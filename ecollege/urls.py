@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^success-registration/$', views.success_reg, name='success_reg'),
     url(r'^login_redirect/$', views.login_redirect, name='login_redirect'),
+    url(r'^students-update/$', views.student_sign_up, name='student_sign_up'),
+    url(r'^tutors-update/$', views.tutor_sign_up, name='tutor_sign_up'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

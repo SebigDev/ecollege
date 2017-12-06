@@ -13,11 +13,18 @@ All Courses
                                 <div class="media-body">
                                     <h1 class="text-display-1 margin-none">All courses</h1>
                                 </div>
+                                 <div class="text-right">
+                                     <form action="{% url "all_course_list" %}" method="GET">
+                                        <input type="text" name="q"  class="form-actions"/>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                     </form>
+                                 </div>
+
                             </div>
                         </div>
                         <div class="row" data-toggle="isotope">
                             {% for all in course %}
-                            <div class="item col-xs-12 col-sm-6 col-lg-4">
+                            <div class="item col-xs-12 col-sm-6 col-lg-3">
                                 <div class="panel panel-default paper-shadow" data-z="0.5">
                                     <div class="panel-heading">
                                         <div class="media media-clearfix-xs-min v-middle">
@@ -51,7 +58,7 @@ All Courses
                                     <hr class="margin-none" />
                                     <div class="panel-body">
                                         <a class="btn btn-white btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated
-                                           href="{% url 'course_detail' all.pk all.slug %}">Go to course</a>
+                                           href="{% url 'course_detail' all.pk all.slug|slugify %}">View Course Details</a>
                                     </div>
                                 </div>
                             </div>
