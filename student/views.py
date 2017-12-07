@@ -79,12 +79,6 @@ def profile_update(request, pk):
     return render(request, 'student/update_profile.html', {'form': form, 'student': student})
 
 
-class StudentCourseRegForm(ModelForm):
-    class Meta:
-        model = StudentCourses
-        fields = '__all__'
-
-
 class StudentCourseCreateView(LoginRequiredMixin, CreateView):
     template_name = 'student/student_form.html'
     model = StudentCourses
