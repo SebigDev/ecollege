@@ -57,8 +57,8 @@ INSTALLED_APPS = [
     'accounts',
     'crispy_forms',
     'captcha',
-    'debug_panel',
     'debug_toolbar',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
