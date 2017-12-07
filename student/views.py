@@ -81,14 +81,13 @@ def profile_update(request, pk):
 
 class StudentCourseCreateView(LoginRequiredMixin, CreateView):
     template_name = 'student/student_form.html'
-    model = StudentCourses
-    fields = ['student', 'student_course']
 
-    def get_context_data(self, **kwargs):
-        context = super(StudentCourseCreateView, self).get_context_data(**kwargs)
-        context['student'] = get_object_or_404(Student, student_user=self.request.user,)
-        context['student_course'] = StudentCourses.objects.filter(pk=self.object)
-        return context
+    model = StudentCourses
+    fields = ['student_course']
+
+    def form_valid(self,form):
+        form.instance.student = self.request.user
+        return super(StudentCourseCreateView, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('my_courses', )
