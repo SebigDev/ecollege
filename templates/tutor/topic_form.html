@@ -1,16 +1,15 @@
 {% extends 'layouts/master.html' %}
 {% load staticfiles %}
 {% block title %}
-Edit Profile
+Edit {{ topic.title }}
 {% endblock %}
 {% block content %}
     {% include 'layouts/tutor_navbar.html' %}
-
+<br>
 <div class="st-content-inner padding-none" style="margin-left: 20%">
-{% if request.user.is_authenticated %}
-<h3 class="text-left">Update Profile</h3>
   <table class="table table-striped">
-      <form action="" method="post">
+
+      <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {% include 'includes/form.html' %}
           <tr>
@@ -19,9 +18,6 @@ Edit Profile
 
       </form>
   </table>
-{% else %}
-<h4 class="text-info">You cannot access this tutor's edit profile</h4>
-{% endif %}
 
 </div>
 

@@ -85,7 +85,16 @@ class StudentCourseCreateView(LoginRequiredMixin, CreateView):
     model = StudentCourses
     fields = ['student_course']
 
-    def form_valid(self,form):
+    def get_context_data(self, **kwargs):
+        context = super(StudentCourseCreateView, self).get_context_data(**kwargs)
+        context['student'] = get_object_or_404(Student, student_user=self.request.user)
+        try:
+            context['student_course'] = StudentCourses.objects.filter(pk=self.object)
+        except StudentCourses.DoesNotExist:
+            return HttpResponse('Course already exists')
+        return context
+
+    def form_valid(self, form):
         form.instance.student = self.request.user
         return super(StudentCourseCreateView, self).form_valid(form)
 

@@ -50,15 +50,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third Party Apps
+    'crispy_forms',
+    'captcha',
+    'debug_toolbar',
+    'widget_tweaks',
+
+    # Custom Apps
     'course',
     'tutor',
     'student',
     'forums',
     'accounts',
-    'crispy_forms',
-    'captcha',
-    'debug_toolbar',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -161,3 +165,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

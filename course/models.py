@@ -17,8 +17,8 @@ class CourseCategory(models.Model):
 
 class Course(models.Model):
     category = models.ManyToManyField(CourseCategory, related_name='course_category')
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
+    title = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
     image = models.ImageField(upload_to='course')
     blob = models.CharField(max_length=500)
     description = models.TextField()
@@ -33,11 +33,11 @@ class Course(models.Model):
 
 
 class Topic(models.Model):
-    topics_course = models.ForeignKey(Course, blank=True)
-    topic_chapter = models.PositiveIntegerField()
-    topic_title = models.CharField(max_length=200)
-    topic_description = models.TextField()
-    topic_duration = models.CharField(max_length=10)
+    topics_course = models.ForeignKey(Course)
+    topic_chapter = models.PositiveIntegerField(blank=True)
+    topic_title = models.CharField(max_length=200, blank=True)
+    topic_description = models.TextField(blank=True)
+    topic_duration = models.CharField(max_length=10, blank=True)
 
     class Meta:
         verbose_name_plural = 'Topic'

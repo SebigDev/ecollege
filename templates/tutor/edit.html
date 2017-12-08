@@ -12,7 +12,7 @@
 
       <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <li class="list-group-item">{{ form.as_table}}</li>
+          {% include 'includes/form.html' %}
           <tr>
               <td><button>Update</button></td>
           </tr>
