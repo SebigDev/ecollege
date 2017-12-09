@@ -49,9 +49,9 @@ Student Courses
                             </div>
                             {% endfor %}
                             {% else %}
-                            <h4 class="text-success text-center">
-                                You have not selected any course, Please select to start!<br>
-                            <a href="{% url 'register_course' %}" class="btn btn-primary">Register</a>
+                            <h4 class="page-body">
+                                You have not selected any course, Please select to start!<hr/>
+                            <a href="{% url 'register_course' %}" class="btn btn-primary">Select</a>
                             </h4>
                                 {% endif %}
                         </div>

@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/courses/(?P<slug>[\w-]+)/edit-course/$',
         views.TutorCourseUpdateView.as_view(), name='tutor_edit'),
     url(r'^(?P<pk>\d+)/(?P<slug>[\w-]+)/add-topic/$', views.TutorCreateTopicView.as_view(),  name='tutor_create_topic'),
-    url(r'^(?P<pk>\d+)/topic/(?P<topic_title>[\w-]+)/$', views.tutor_course_topics,  name='tutor_course_topics'),
+    url(r'^(?P<pk>\d+)/topic/$', views.tutor_course_topics,  name='tutor_course_topics'),
     url(r'^(?P<pk>\d+)/(?P<topic_title>[\w-]+)/topic/update$',
         views.TutorTopicUpdateView.as_view(),  name='topic_update'),
     url(r'^(?P<pk>\d+)/courses/delete-course/$', views.tutor_delete_course, name='tutor_delete'),

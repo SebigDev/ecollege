@@ -1,4 +1,5 @@
 {% extends 'layouts/master.html' %}
+{% load crispy_forms_tags %}
 {% load staticfiles %}
 {% block title %}
 {{ student.student_user }}'s Profile
@@ -7,11 +8,13 @@
 {% include 'layouts/student_navbar.html' %}
 {% if request.user.is_authenticated and request.user.is_active %}
     <div class="st-content-inner padding-none" style="margin-left: 20%">
+    <div class="col-md-8 col-md-offset-1">
 <h3 class="text-left">Update Profile</h3>
   <table class="table table-striped">
       <form action="" method="post">
           {% csrf_token %}
-          {% include 'includes/form.html' %}
+{#          {% include 'includes/form.html' %}#}
+          {{ form|crispy }}
           <tr>
               <td><button>Update</button></td>
           </tr>
@@ -21,7 +24,7 @@
 {% else %}
 <h4 class="text-info">You cannot access this tutor's edit profile</h4>
 {% endif %}
-
+</div>
 </div>
 
 {% endblock %}

@@ -34,13 +34,17 @@ class Course(models.Model):
 
 class Topic(models.Model):
     topics_course = models.ForeignKey(Course)
-    topic_chapter = models.PositiveIntegerField(blank=True)
-    topic_title = models.CharField(max_length=200, blank=True)
-    topic_description = models.TextField(blank=True)
-    topic_duration = models.CharField(max_length=10, blank=True)
+    topic_chapter = models.PositiveIntegerField()
+    topic_title = models.CharField(max_length=200)
+    topic_slug = models.SlugField(max_length=200, default=True)
+    topic_description = models.TextField()
+    topic_duration = models.CharField(max_length=10)
 
     class Meta:
         verbose_name_plural = 'Topic'
 
     def __str__(self):
         return self.topic_title
+
+    def get_absolute_url(self):
+        return reverse('tutor_course_topics', kwargs={'pk': self.topics_course.pk})

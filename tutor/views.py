@@ -117,20 +117,20 @@ def tutor_student_list(request, pk):
     return render(request, 'tutor/student_list.html', {'list_student': list_student, 'tutor': tutor})
 
 
-def tutor_course_topics(request, pk, topic_title):
+def tutor_course_topics(request, pk):
     if request.user.is_staff and request.user.is_authenticated():
-        course = Course.objects.get(tutor__tutor_user=request.user, pk=pk)
+        course = Course.objects.get(id=pk)
         tutor = get_object_or_404(Tutor, tutor_user=request.user)
-        topic = Topic.objects.filter(topics_course=pk).order_by('id')
+        topic = Topic.objects.filter(topics_course=course).order_by('id')
         return render(request, 'tutor/topic_course.html', {'course': course, 'topic': topic, 'tutor': tutor})
 
 
 class TutorCreateTopicView(LoginRequiredMixin, CreateView):
     model = Topic
     template_name = 'tutor/topic.html'
-    fields = ['topics_course', 'topic_chapter', 'topic_title', 'topic_description', 'topic_duration']
+    fields = ['topics_course', 'topic_chapter', 'topic_title',  'topic_slug', 'topic_description', 'topic_duration']
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self,  **kwargs):
         context = super(TutorCreateTopicView, self).get_context_data(**kwargs)
         context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         return context
@@ -139,15 +139,10 @@ class TutorCreateTopicView(LoginRequiredMixin, CreateView):
             form.fields.topics_course = self.object
             return super(TutorCreateTopicView, self).form_valid(form)
 
-    def get_success_url(self):
-            return reverse('tutor_course_topics', kwargs={
-                'pk': self.object.pk, 'slug': self.object.slug
-            })
-
 
 class TutorTopicUpdateView(LoginRequiredMixin, UpdateView):
     model = Topic
-    fields = ['topic_chapter', 'topic_title', 'topic_description', 'topic_duration']
+    fields = ['topic_chapter', 'topic_title',  'topic_slug',  'topic_description', 'topic_duration']
     template_name = 'tutor/topic_form.html'
 
     def get_context_data(self, **kwargs):
@@ -155,10 +150,6 @@ class TutorTopicUpdateView(LoginRequiredMixin, UpdateView):
         context['tutor'] = get_object_or_404(Tutor, tutor_user=self.request.user)
         return context
 
-    def get_success_url(self):
-        return reverse('tutor_course_topics', kwargs={
-                'pk': self.object.pk
-            })
 
 
 
